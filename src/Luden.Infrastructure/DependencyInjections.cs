@@ -1,0 +1,41 @@
+using Luden.Application.Core.Services;
+using Luden.Domain.Core.Repositories;
+using Luden.Domain.Entities;
+using Luden.Infrastructure.Data;
+using Luden.Infrastructure.Repositories;
+using Luden.Infrastructure.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Luden.Infrastructure
+{
+    public static class DependencyInjections
+    {
+        public static void ConfigureServices(IServiceCollection services, IConfiguration Configuration)
+        {
+            services.AddDbContext<LudenDbContext>(options =>
+                options.UseSqlServer("name=ConnectionStrings:LudenDatabase",
+                x => x.MigrationsAssembly("Luden.Infrastructure")));
+
+            services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                  .AddEntityFrameworkStores<LudenDbContext>();
+
+            services.AddScoped(typeof(IBaseRepositoryAsync<>), typeof(BaseRepositoryAsync<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ILoggerService, LoggerService>();
+        }
+
+        public static void MigrateDatabase(IServiceProvider serviceProvider)
+        {
+            var dbContextOptions = serviceProvider.GetRequiredService<DbContextOptions<LudenDbContext>>();
+
+            using (var dbContext = new LudenDbContext(dbContextOptions))
+            {
+                dbContext.Database.Migrate();
+            }
+        }
+    }
+}
