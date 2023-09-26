@@ -1,11 +1,10 @@
 ﻿using Luden.Domain.Core.Models;
 using Luden.Domain.Enums;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 
 namespace Luden.Domain.Entities
 {
-    public class User : IdentityUser, IBaseEntity, IAuditableEntity, ISoftDeleteEntity
+    public class User : BaseEntity, IAuditableEntity, ISoftDeleteEntity
     {
         [Key]
         public Guid Id { get; set; }

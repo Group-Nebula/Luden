@@ -3,7 +3,7 @@ using Luden.Domain.Core.Specifications;
 
 namespace Luden.Domain.Core.Repositories
 {
-    public interface IBaseRepositoryAsync<T> where T : IBaseEntity
+    public interface IBaseRepositoryAsync<T> where T : BaseEntity
     {
         Task<T> GetByIdAsync(Guid id);
         Task<IList<T>> ListAllAsync();

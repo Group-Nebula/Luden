@@ -15,7 +15,7 @@ namespace Luden.Infrastructure.Repositories
             _repositories = new Dictionary<Type, dynamic>();
         }
 
-        public IBaseRepositoryAsync<T> Repository<T>() where T : IBaseEntity
+        public IBaseRepositoryAsync<T> Repository<T>() where T : BaseEntity
         {
             var entityType = typeof(T);
 

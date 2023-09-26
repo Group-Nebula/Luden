@@ -1,6 +1,5 @@
 using Luden.Application.Core.Services;
 using Luden.Domain.Core.Repositories;
-using Luden.Domain.Entities;
 using Luden.Infrastructure.Data;
 using Luden.Infrastructure.Repositories;
 using Luden.Infrastructure.Services;
@@ -17,9 +16,6 @@ namespace Luden.Infrastructure
             services.AddDbContext<LudenDbContext>(options =>
                 options.UseSqlServer("name=ConnectionStrings:LudenDatabase",
                 x => x.MigrationsAssembly("Luden.Infrastructure")));
-
-            services.AddIdentityCore<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                  .AddEntityFrameworkStores<LudenDbContext>();
 
             services.AddScoped(typeof(IBaseRepositoryAsync<>), typeof(BaseRepositoryAsync<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();

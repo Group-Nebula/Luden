@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Luden.Infrastructure.Repositories
 {
-    public class BaseRepositoryAsync<T> : IBaseRepositoryAsync<T> where T : IBaseEntity
+    public class BaseRepositoryAsync<T> : IBaseRepositoryAsync<T> where T : BaseEntity
     {
         protected readonly LudenDbContext _dbContext;
 

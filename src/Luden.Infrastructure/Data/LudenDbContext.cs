@@ -10,5 +10,11 @@ namespace Luden.Infrastructure.Data
         { }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Session> Sessions { get; set; }
+        public DbSet<RPGSystem> Systems { get; set; }
+        public DbSet<RPG> RPGs { get; set; }
+        public DbSet<CharacterAttribute> CharacterAttributes { get; set; }
+        public DbSet<Character> Characters { get; set; }
+
     }
 }

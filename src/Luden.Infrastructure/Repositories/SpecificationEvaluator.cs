@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Luden.Infrastructure.Repositories
 {
-    public class SpecificationEvaluator<T> where T : IBaseEntity
+    public class SpecificationEvaluator<T> where T : BaseEntity
     {
         public static IQueryable<T> GetQuery(IQueryable<T> inputQuery, ISpecification<T> specification)
         {
