@@ -2,14 +2,16 @@
 
 namespace Luden.Domain.Entities
 {
-    public class RpgSystem : BaseEntity, IAuditableEntity, ISoftDeleteEntity
+    public class Attribute : BaseEntity, IAuditableEntity, ISoftDeleteEntity
     {
         public Guid Id { get; set; }
+        public Guid RpgSystemId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string Config { get; set; }
-        public bool IsDeleted { get; set; }
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset? LastModifiedOn { get; set; }
+        public bool IsDeleted { get; set; }
+
+        //Relationships
+        public RpgSystem RpgSystem { get; set; }
     }
 }

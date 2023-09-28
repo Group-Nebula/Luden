@@ -8,7 +8,6 @@ namespace Luden.Domain.Entities
         //Relationship Ids
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public Guid SessionId { get; set; }
 
         //Character Info
         public string Name { get; set; }
@@ -21,7 +20,5 @@ namespace Luden.Domain.Entities
 
         //Relationships
         public User User { get; set; }
-        public Session Session { get; set; }
-        public IEnumerable<CharacterAttribute> Attributes { get; set; }
     }
 }
