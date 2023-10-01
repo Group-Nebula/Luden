@@ -7,7 +7,7 @@ namespace Luden.Application.Models.Requests
     {
         [Required]
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [MaxLength(50)]

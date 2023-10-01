@@ -8,7 +8,24 @@ namespace Luden.Infrastructure.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Character> builder)
         {
-            throw new NotImplementedException();
+            //Primary Key
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.Id).ValueGeneratedOnAdd();
+
+            //Base Entity Properties
+            builder.Property(c => c.IsDeleted).HasDefaultValue(false);
+            builder.Property(c => c.CreatedAt).HasColumnType("datetime2").ValueGeneratedOnAdd();
+            builder.Property(c => c.UpdatedAt).HasColumnType("datetime2").ValueGeneratedOnAddOrUpdate();
+
+            //Properties
+            builder.Property(c => c.Name).HasColumnType("varchar(150)").IsRequired();
+            builder.Property(c => c.Description).HasColumnType("varchar(max)").IsRequired();
+            builder.Property(c => c.BirthDate).HasColumnType("datetime2").IsRequired();
+            builder.Property(c => c.Status).HasColumnType("int").IsRequired();
+
+            //Relationships
+            builder.HasOne(c => c.User).WithMany(u => u.Characters).HasForeignKey(c => c.UserId);
+            builder.HasMany(c => c.CharacterSkills).WithOne(cs => cs.Character).HasForeignKey(c => c.CharacterId);
         }
     }
 }

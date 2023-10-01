@@ -1,6 +1,8 @@
 ﻿using Luden.Domain.Entities;
 using Luden.Infrastructure.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 namespace Luden.Infrastructure.Data
 {
@@ -12,8 +14,8 @@ namespace Luden.Infrastructure.Data
         public DbSet<RpgSystem> RpgSystems { get; set; }
         public DbSet<Rpg> Rpgs { get; set; }
         public DbSet<RpgPlayer> RpgPlayers { get; set; }
-        public DbSet<Domain.Entities.Attribute> Attributes { get; set; }
-        public DbSet<CharacterAttribute> CharacterAttributes { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<CharacterSkill> CharacterSkills { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<RpgSession> RpgSessions { get; set; }
         public DbSet<Session> Sessions { get; set; }
@@ -25,13 +27,33 @@ namespace Luden.Infrastructure.Data
             modelBuilder.ApplyConfiguration(new RpgSystemMapping());
             modelBuilder.ApplyConfiguration(new RpgMapping());
             modelBuilder.ApplyConfiguration(new RpgPlayerMapping());
-            modelBuilder.ApplyConfiguration(new AttributeMapping());
-            modelBuilder.ApplyConfiguration(new CharacterAttributeMapping());
+            modelBuilder.ApplyConfiguration(new SkillMapping());
+            modelBuilder.ApplyConfiguration(new CharacterSkillMapping());
             modelBuilder.ApplyConfiguration(new CharacterMapping());
             modelBuilder.ApplyConfiguration(new RpgSessionMapping());
             modelBuilder.ApplyConfiguration(new SessionMapping());
 
             base.OnModelCreating(modelBuilder);
+        }
+    }
+
+    public class LudenDbContextFactory : IDesignTimeDbContextFactory<LudenDbContext>
+    {
+        public LudenDbContext CreateDbContext(string[] args)
+        {
+            var builder = new ConfigurationBuilder()
+                   .AddEnvironmentVariables()
+                   .AddUserSecrets<LudenDbContext>();
+
+            var configuration = builder.Build();
+
+            var connectionString = configuration["ConnectionStrings:DefaultConnection"];
+
+            var dbContextBuilder = new DbContextOptionsBuilder<LudenDbContext>();
+
+            dbContextBuilder.UseSqlServer(connectionString);
+
+            return new LudenDbContext(dbContextBuilder.Options);
         }
     }
 

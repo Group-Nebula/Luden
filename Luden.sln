@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luden.Domain", "src\Luden.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luden.Infrastructure", "src\Luden.Infrastructure\Luden.Infrastructure.csproj", "{4CB67815-C809-460E-B440-92B858C3F2F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luden.WebApi", "src\Luden.WebApi\Luden.WebApi.csproj", "{22BE958E-E31D-4196-B01A-C83021D049DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luden.Api", "src\Luden.WebApi\Luden.Api.csproj", "{22BE958E-E31D-4196-B01A-C83021D049DA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{014B84E7-0BFF-490C-8537-8F5D71B85D0B}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luden.Domain.Test", "src\Tests\Luden.Domain.Test\Luden.Domain.Test.csproj", "{602A116A-3F47-4683-A92D-EDEAFDF7172A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Luden.Infrastructure.Test", "src\Tests\Luden.Infrastructure.Test\Luden.Infrastructure.Test.csproj", "{FA9D23CB-4F1A-4F56-A4C4-29F0AC93B4B8}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Luden.Client", "Luden\Luden.Client.esproj", "{388A1B1D-55FA-4199-AB02-738C03B93DA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,12 @@ Global
 		{FA9D23CB-4F1A-4F56-A4C4-29F0AC93B4B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9D23CB-4F1A-4F56-A4C4-29F0AC93B4B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA9D23CB-4F1A-4F56-A4C4-29F0AC93B4B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{388A1B1D-55FA-4199-AB02-738C03B93DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{388A1B1D-55FA-4199-AB02-738C03B93DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{388A1B1D-55FA-4199-AB02-738C03B93DA1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{388A1B1D-55FA-4199-AB02-738C03B93DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{388A1B1D-55FA-4199-AB02-738C03B93DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{388A1B1D-55FA-4199-AB02-738C03B93DA1}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{53BFB2A0-3557-4347-9B92-FF6E4EC0DC1A} = {014B84E7-0BFF-490C-8537-8F5D71B85D0B}
 		{602A116A-3F47-4683-A92D-EDEAFDF7172A} = {014B84E7-0BFF-490C-8537-8F5D71B85D0B}
 		{FA9D23CB-4F1A-4F56-A4C4-29F0AC93B4B8} = {014B84E7-0BFF-490C-8537-8F5D71B85D0B}
+		{388A1B1D-55FA-4199-AB02-738C03B93DA1} = {16ADFAB2-2234-42E2-BDDE-AB8C5A64F1B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6EB470B-3C76-4755-8099-A3D219459944}

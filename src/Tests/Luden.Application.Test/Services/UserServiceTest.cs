@@ -1,13 +1,13 @@
-using Xunit;
-using Luden.Application.Services;
+using Luden.Application.Core.Services;
 using Luden.Application.Models.Requests;
+using Luden.Application.Services;
+using Luden.Domain.Core.Repositories;
+using Luden.Domain.Core.Specifications;
 using Luden.Domain.Entities;
 using Luden.Domain.Enums;
 using Luden.Domain.Exceptions;
-using Luden.Domain.Core.Specifications;
-using Luden.Application.Core.Services;
 using Moq;
-using Luden.Domain.Core.Repositories;
+using Xunit;
 
 namespace Luden.Application.Test.Services
 {
@@ -31,9 +31,8 @@ namespace Luden.Application.Test.Services
                 .ReturnsAsync(new User
                 {
                     Id = id,
-                    FirstName = "Nilav",
-                    LastName = "Patel",
-                    EmailId = "nilavpatel1992@gmail.com",
+                    UserName = "Nilav",
+                    Email = "nilavpatel1992@gmail.com",
                     Password = "Test123",
                     Status = UserStatus.Active
                 });
@@ -42,9 +41,8 @@ namespace Luden.Application.Test.Services
             // Act
             var result = await _userService.CreateUser(new CreateUserReq
             {
-                FirstName = "Nilav",
-                LastName = "Patel",
-                EmailId = "nilavpatel1992@gmail.com",
+                UserName = "Nilav",
+                Email = "nilavpatel1992@gmail.com",
                 Password = "Test123",
                 Status = UserStatus.Active
             });
@@ -65,7 +63,7 @@ namespace Luden.Application.Test.Services
             // Act
             await Assert.ThrowsAsync<UserNotFoundException>(async () => await _userService.ValidateUser(new ValidateUserReq
             {
-                EmailId = "nilavpatel1992@gmail.com",
+                Email = "nilavpatel1992@gmail.com",
                 Password = "Test123"
             }));
         }
@@ -78,9 +76,8 @@ namespace Luden.Application.Test.Services
             User user = new User
             {
                 Id = id,
-                FirstName = "Nilav",
-                LastName = "Patel",
-                EmailId = "nilavpatel1992@gmail.com",
+                UserName = "Nilav",
+                Email = "nilavpatel1992@gmail.com",
                 Password = "Test123",
                 Status = UserStatus.InActive
             };
@@ -91,7 +88,7 @@ namespace Luden.Application.Test.Services
             // Act
             await Assert.ThrowsAsync<UserIsNotActiveException>(async () => await _userService.ValidateUser(new ValidateUserReq
             {
-                EmailId = "nilavpatel1992@gmail.com",
+                Email = "nilavpatel1992@gmail.com",
                 Password = "Test123"
             }));
         }
@@ -104,9 +101,8 @@ namespace Luden.Application.Test.Services
             User user = new User
             {
                 Id = id,
-                FirstName = "Nilav",
-                LastName = "Patel",
-                EmailId = "nilavpatel1992@gmail.com",
+                UserName = "Nilav",
+                Email = "nilavpatel1992@gmail.com",
                 Password = "Test123",
                 Status = UserStatus.Active
             };
@@ -117,7 +113,7 @@ namespace Luden.Application.Test.Services
             // Act
             var result = await _userService.ValidateUser(new ValidateUserReq
             {
-                EmailId = "nilavpatel1992@gmail.com",
+                Email = "nilavpatel1992@gmail.com",
                 Password = "Test123"
             });
 

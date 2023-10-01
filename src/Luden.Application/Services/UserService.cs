@@ -27,7 +27,7 @@ namespace Luden.Application.Services
         {
             var user = await _unitOfWork.Repository<User>().AddAsync(new User
             {
-                UserName = req.Name,
+                UserName = req.UserName,
                 Email = req.Email,
                 Password = req.Password,
                 Status = req.Status

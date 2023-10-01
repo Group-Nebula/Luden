@@ -8,7 +8,12 @@ namespace Luden.Infrastructure.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Session> builder)
         {
-            throw new NotImplementedException();
+            //Primary Key
+            builder.HasKey(s => s.Id);
+            builder.Property(s => s.Id).ValueGeneratedOnAdd();
+
+            //Relationships
+            builder.HasMany(s => s.RpgSessions).WithOne(rs => rs.Session).HasForeignKey(rs => rs.SessionId).IsRequired();
         }
     }
 }

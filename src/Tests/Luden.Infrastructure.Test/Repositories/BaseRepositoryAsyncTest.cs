@@ -1,9 +1,9 @@
-using Xunit;
-using Microsoft.EntityFrameworkCore;
-using Luden.Infrastructure.Data;
-using Luden.Infrastructure.Repositories;
 using Luden.Domain.Entities;
 using Luden.Domain.Enums;
+using Luden.Infrastructure.Data;
+using Luden.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Xunit;
 
 namespace Luden.Infrastructure.Test.Repositories
 {
@@ -25,13 +25,11 @@ namespace Luden.Infrastructure.Test.Repositories
             // Arrange
             var user = new User
             {
-                FirstName = "Nilav",
-                LastName = "Patel",
-                EmailId = "nilavpatel1992@gmail.com",
+                UserName = "Nilav",
+                Email = "nilavpatel1992@gmail.com",
                 Password = "Test123",
                 Status = UserStatus.Active,
-                CreatedBy = Guid.NewGuid(),
-                CreatedOn = DateTimeOffset.UtcNow
+                CreatedAt = DateTime.UtcNow
             };
 
             // Act

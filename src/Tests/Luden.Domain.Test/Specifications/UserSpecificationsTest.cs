@@ -1,8 +1,8 @@
-using Xunit;
-using Luden.Domain.Specifications;
 using Luden.Domain.Entities;
 using Luden.Domain.Enums;
+using Luden.Domain.Specifications;
 using Luden.Domain.Test.Helpers;
+using Xunit;
 
 namespace Luden.Domain.Test.Specifications
 {
@@ -14,25 +14,22 @@ namespace Luden.Domain.Test.Specifications
             _users = new List<User>{
                 new User
                 {
-                    FirstName = "Nilav",
-                    LastName = "Patel",
-                    EmailId = "nilavpatel1992@gmail.com",
+                    UserName = "Nilav",
+                    Email = "nilavpatel1992@gmail.com",
                     Password = "Test123",
                     Status = UserStatus.Active
                 },
                 new User
                 {
-                    FirstName = "Nilav1",
-                    LastName = "Patel",
-                    EmailId = "nilav1patel1992@gmail.com",
+                    UserName = "Nilav1",
+                    Email = "nilav1patel1992@gmail.com",
                     Password = "Test1234",
                     Status = UserStatus.InActive
                 },
                 new User
                 {
-                    FirstName = "Nilav2",
-                    LastName = "Patel",
-                    EmailId = "nilav2patel1992@gmail.com",
+                    UserName = "Nilav2",
+                    Email = "nilav2patel1992@gmail.com",
                     Password = "Test1235",
                     Status = UserStatus.Active
                 }

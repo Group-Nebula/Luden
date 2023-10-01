@@ -2,7 +2,7 @@
 
 namespace Luden.Domain.Entities
 {
-    public class RpgSystem : BaseEntity, IAuditableEntity, ISoftDeleteEntity
+    public class CharacterSkill : BaseEntity, IAuditableEntity, ISoftDeleteEntity
     {
         //Primary Key
         public Guid Id { get; set; }
@@ -13,12 +13,12 @@ namespace Luden.Domain.Entities
         public DateTime UpdatedAt { get; set; }
 
         //Properties
-        public string Config { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public Guid CharacterId { get; set; }
+        public Guid SkillId { get; set; }
+        public int Value { get; set; }
 
         //Relationships
-        public IEnumerable<Skill> Skills { get; set; }
-        public IEnumerable<Rpg> Rpgs { get; set; }
+        public Character Character { get; set; }
+        public Skill Skill { get; set; }
     }
 }
