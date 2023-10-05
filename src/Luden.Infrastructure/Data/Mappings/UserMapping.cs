@@ -13,14 +13,13 @@ namespace Luden.Infrastructure.Data.Mappings
             builder.Property(u => u.Id).ValueGeneratedOnAdd();
 
             //Properties
-            builder.Property(u => u.UserName).HasColumnType("varchar(50)").IsRequired();
+            builder.Property(u => u.Username).HasColumnType("varchar(50)").IsRequired();
             builder.Property(u => u.Email).HasColumnType("varchar(150)").IsRequired();
             builder.Property(u => u.Password).HasColumnType("varchar(max)").IsRequired();
-            builder.Property(u => u.Status).HasColumnType("int").IsRequired();
 
             //Base Entity Properties
-            builder.Property(u => u.CreatedAt).HasColumnType("datetime2").ValueGeneratedOnAdd();
-            builder.Property(u => u.UpdatedAt).HasColumnType("datetime2").ValueGeneratedOnAddOrUpdate();
+            builder.Property(c => c.CreatedAt).HasColumnType("datetime2").HasDefaultValueSql("GETDATE()");
+            builder.Property(c => c.UpdatedAt).HasColumnType("datetime2").HasDefaultValueSql("GETDATE()").IsRowVersion();
             builder.Property(u => u.IsDeleted).HasDefaultValue(false);
 
             //Relationships

@@ -1,8 +1,6 @@
 ﻿using Luden.Domain.Entities;
 using Luden.Infrastructure.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
 
 namespace Luden.Infrastructure.Data
 {
@@ -36,25 +34,4 @@ namespace Luden.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
         }
     }
-
-    public class LudenDbContextFactory : IDesignTimeDbContextFactory<LudenDbContext>
-    {
-        public LudenDbContext CreateDbContext(string[] args)
-        {
-            var builder = new ConfigurationBuilder()
-                   .AddEnvironmentVariables()
-                   .AddUserSecrets<LudenDbContext>();
-
-            var configuration = builder.Build();
-
-            var connectionString = configuration["ConnectionStrings:DefaultConnection"];
-
-            var dbContextBuilder = new DbContextOptionsBuilder<LudenDbContext>();
-
-            dbContextBuilder.UseSqlServer(connectionString);
-
-            return new LudenDbContext(dbContextBuilder.Options);
-        }
-    }
-
 }

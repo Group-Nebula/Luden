@@ -13,9 +13,13 @@ namespace Luden.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddScoped(typeof(IBaseRepositoryAsync<>), typeof(BaseRepositoryAsync<>));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddDbContext<LudenDbContext>(options =>
+                options.UseSqlServer("name=ConnectionStrings:WorkConnection",
+                x => x.MigrationsAssembly("Luden.Infrastructure")));
 
+            services.AddScoped(typeof(IBaseRepositoryAsync<>), typeof(BaseRepositoryAsync<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ILoggerService, LoggerService>();
         }

@@ -31,9 +31,9 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllActiveUsersRes>> GetAll()
+        public async Task<ActionResult<GetAllActiveUsersRes>> GetAll([FromQuery] string username)
         {
-            var result = await _userService.GetAllActiveUsers();
+            var result = await _userService.GetAllActiveUsers(username);
             return Ok(result);
         }
     }

@@ -1,6 +1,6 @@
-using Microsoft.Extensions.DependencyInjection;
 using Luden.Application.Interfaces;
 using Luden.Application.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Luden.Application
 {
@@ -9,6 +9,7 @@ namespace Luden.Application
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITokenService, TokenService>();
         }
     }
 }

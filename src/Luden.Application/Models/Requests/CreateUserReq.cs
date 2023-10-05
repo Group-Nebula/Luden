@@ -1,4 +1,3 @@
-using Luden.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Luden.Application.Models.Requests
@@ -19,8 +18,5 @@ namespace Luden.Application.Models.Requests
         [DataType(DataType.Password)]
 
         public string Password { get; set; }
-
-        [Required]
-        public UserStatus Status { get; set; }
     }
 }

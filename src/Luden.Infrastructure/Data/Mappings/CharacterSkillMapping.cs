@@ -14,8 +14,8 @@ namespace Luden.Infrastructure.Data.Mappings
 
             //Base Entity Properties
             builder.Property(cs => cs.IsDeleted).HasDefaultValue(false);
-            builder.Property(cs => cs.CreatedAt).HasColumnType("datetime2").ValueGeneratedOnAdd();
-            builder.Property(cs => cs.UpdatedAt).HasColumnType("datetime2").ValueGeneratedOnAddOrUpdate();
+            builder.Property(c => c.CreatedAt).HasColumnType("datetime2").HasDefaultValueSql("GETDATE()");
+            builder.Property(c => c.UpdatedAt).HasColumnType("datetime2").HasDefaultValueSql("GETDATE()").IsRowVersion();
 
             //Properties
             builder.Property(cs => cs.Value).HasColumnType("int").IsRequired();

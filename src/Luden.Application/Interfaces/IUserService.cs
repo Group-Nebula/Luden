@@ -9,6 +9,6 @@ namespace Luden.Application.Interfaces
 
         Task<ValidateUserRes> ValidateUser(ValidateUserReq req);
 
-        Task<GetAllActiveUsersRes> GetAllActiveUsers();
+        Task<GetAllActiveUsersRes> GetAllActiveUsers(string? username);
     }
 }
