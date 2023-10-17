@@ -1,8 +1,28 @@
-# Onion Architecture / Clean Architecture
+# Front-end UI
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/NilavPatel/dotnet-onion-architecture/main/docs/ddd-banner.png">
-</p>
+- In your settings.json of Visual Studio Code, be sure that have this disable:
+```
+"editor.formatOnSave": false,
+```
+- And add eslint configuration do fix:
+
+```
+"editor.codeActionsOnSave":
+{
+  "source.fixAll.eslint": true
+},
+```
+
+- Install the dependencies:
+```
+npm i -D eslint @rocketseat/eslint-config
+```
+- Run the project:
+```
+npm run dev
+```
+
+# Onion Architecture / Clean Architecture
 
 - Onion architecture can solve problem of separation of concern and tightly coupled components from N-layered architecture.
 - All layers are depended on inner layer.
@@ -47,69 +67,10 @@ Domain model are of 2 types
 	- This model has fields and behaviours. Fields can be modify only within behaviours.
 	- Follow Aggregate pattern with Aggregate root, Value object, Entity, Bounded context, Ubiqutous language
 
-## Validations in Domain driven design:
-
-There are 2 types of validations in DDD:
-1. Model Field validations
-	- Properties having valid length
-    - required field validations
-    - regex
-
-    Model validations can be validated in Application layer or Domain layer.
-
-    - Use DataAnnotation (https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-7.0)
-    - Use Guard pattern (https://github.com/NilavPatel/Guard-Pattern)
-        - mostly used when you have single source of truth (validations in aggregate pattern)
-    - Use fluent validations pattern (https://docs.fluentvalidation.net/en/latest/aspnet.html)
-        - Used when validating models instead of single properties like request models, commands
-
-2. Business validations
-	- Balance should be more than Withdraw amount
-	- User should be active 
-	- User name should not be exist
-
-    Business validations can be validated in Applciation layer or Domain layer.
-
-    Business validations have two types:
-
-    1. Validations in same domain model
-        - Balance should be more than Withdraw amount
-        - User should be active 
-    2. Validations against other domain models
-        - User name should not be already exist
-
-For Aggregate pattern add both types of validations inside domain layer.  
-  
-Problem occurs when validating domain model against other domain models.  
-  
-- In this case use Func<> methods to pass validations to domain model from Application layer.  
-And run this Func<> from domain models.  
-````csharp
-public WithdrawMoney(double amount, Func<string, bool> isBankAccountActive){
-    if(!isBankAccountActive(BankAccountNumber)){
-        throw new DomainValidationException("Bank account is not in active state");
-    }
-}
-````  
-
-- Otherwise pass domain model of other type as parameter and then validate.
-````csharp
-public WithdrawMoney(double amount, BankAccount bankAccount){
-    if(bankAccount.Status != Active){
-        throw new DomainValidationException("Bank account is not in active state");
-    }
-}
-````  
-
-**For more details <a target="_blank" href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice">read</a>**
-
-### Technologies Used:
-
-- .Net 7
-- Entity Framework
-- NLog
-- Swagger
-- Xunit
-- Moq
-- Generic Repository Pattern
-- Specification pattern
+# Technologies Used:
+- [React](https://react.dev/learn/)
+- [Vite](https://vitejs.dev/guide/)
+- [shadcn-ui](https://ui.shadcn.com/docs/components/accordion)
+- [.Net 7](https://dotnet.microsoft.com/pt-br/learn)
+- [ASP.Net](https://dotnet.microsoft.com/pt-br/apps/aspnet)
+- [Entity Framework](https://learn.microsoft.com/pt-br/ef/)
