@@ -1,10 +1,10 @@
-# Front-end UI
+# UI
 
-- In your settings.json of Visual Studio Code, be sure that have this disable:
+- In your settings.json of Visual Studio Code, be sure that have this disabled:
 ```
 "editor.formatOnSave": false,
 ```
-- And add eslint configuration do fix:
+- And add eslint configuration to use eslint editor:
 
 ```
 "editor.codeActionsOnSave":
