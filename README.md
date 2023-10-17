@@ -1,10 +1,10 @@
 # UI
 
-- In your settings.json of Visual Studio Code, be sure that have this disabled:
+- In your settings.json of Visual Studio Code, be sure that you have this disabled:
 ```
 "editor.formatOnSave": false,
 ```
-- And add eslint configuration to use eslint editor:
+- And add eslint configuration to use eslint as formatter:
 
 ```
 "editor.codeActionsOnSave":
