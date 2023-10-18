@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 var appSettings = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -11,6 +12,14 @@ var appSettings = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .Build();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:5173/");
+                      });
+});
 
 var privateKey = builder.Configuration.GetSection("Configuration:PrivateKey").Value;
 
@@ -35,7 +44,6 @@ builder.Services.AddAuthorization(options =>
 {
 });
 
-
 Luden.Application.DependencyInjections.ConfigureServices(builder.Services);
 
 Luden.Infrastructure.DependencyInjections.ConfigureServices(builder.Services, appSettings);
@@ -45,6 +53,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();

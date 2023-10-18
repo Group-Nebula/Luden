@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const CreateAccount = () => {
   return (
-    <div className="bg-background text-foreground container relative h-[100vh] flex-col md:grid lg:max-w-none lg:grid-cols-3 lg:px-0">
+    <div className="bg-background text-foreground container relative h-[100vh] flex-col md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <div className="lg:p-10">
         <div className="mx-auto flex w-full flex-col space-y-6 sm:w-[350px] p-1">
           <div className="flex flex-col p-1 space-y-2 text-center">
@@ -37,7 +37,7 @@ const CreateAccount = () => {
           </div>
         </div>
       </div>
-      <div className="relative flex-col hidden col-span-2 p-10 bg-muted lg:flex"></div>
+      <div className="relative flex-col hidden p-10 bg-muted lg:flex"></div>
     </div>
   )
 }
