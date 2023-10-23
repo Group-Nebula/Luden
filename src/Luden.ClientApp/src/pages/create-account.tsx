@@ -1,8 +1,41 @@
+import { Endpoints } from '@/api/Endpoints'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useToast } from '@/components/ui/use-toast'
+import axios from 'axios'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const CreateAccount = () => {
+  const { toast } = useToast()
+
+  const [email, setEmail] = useState('')
+  const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+
+  function signUp() {
+    axios
+      .post(Endpoints.CreateUser, {
+        userName,
+        email,
+        password,
+      })
+      .then(() => {
+        toast({
+          title: 'Sucess',
+          description: 'You have successfully create an account!',
+          variant: 'default',
+        })
+      })
+      .catch(() => {
+        toast({
+          title: 'Something went wrong',
+          description: 'Please try again later.',
+          variant: 'destructive',
+        })
+      })
+  }
+
   return (
     <div className="bg-background text-foreground container relative h-[100vh] flex-col md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <div className="lg:p-10">
@@ -23,17 +56,33 @@ const CreateAccount = () => {
             </p>
             <p className="font-semibold text-start">
               Username:
-              <Input id="username"></Input>
+              <Input
+                onChange={(e) => {
+                  setUserName(e.target.value)
+                }}
+              ></Input>
             </p>
             <p className="font-semibold text-start">
               Email:
-              <Input id="email" type="email"></Input>
+              <Input
+                type="email"
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+              ></Input>
             </p>
             <p className="font-semibold text-start">
               Password:
-              <Input id="password" type="password"></Input>
+              <Input
+                type="password"
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
+              ></Input>
             </p>
-            <Button className="my-6 rounded-lg">Sign up</Button>
+            <Button className="my-6 rounded-lg" onClick={signUp}>
+              Sign up
+            </Button>
           </div>
         </div>
       </div>

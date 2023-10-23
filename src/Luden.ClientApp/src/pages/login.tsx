@@ -4,31 +4,33 @@ import { Link } from 'react-router-dom'
 import { Endpoints } from '../api/Endpoints.ts'
 import { useToast } from '@/components/ui/use-toast.ts'
 import axios from 'axios'
+import { useState } from 'react'
 
 const LoginPage = () => {
   const { toast } = useToast()
 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   function signIn() {
     axios
       .post(Endpoints.ValidateUser, {
-        email: document.getElementById('email')?.nodeValue,
-        password: document.getElementById('password')?.nodeValue,
+        email,
+        password,
       })
       .then(() => {
-        console.log('Success')
-        // toast({
-        //   title: 'Sucess',
-        //   description: 'You have successfully logged in!',
-        //   variant: 'default',
-        // })
+        toast({
+          title: 'Sucess',
+          description: 'welcome back!',
+          variant: 'default',
+        })
       })
       .catch(() => {
-        console.log('Error')
-        // toast({
-        //   title: 'Something went wrong',
-        //   description: 'Please try again later.',
-        //   variant: 'destructive',
-        // })
+        toast({
+          title: 'Something went wrong',
+          description: 'Please try again later.',
+          variant: 'destructive',
+        })
       })
   }
 
@@ -52,11 +54,21 @@ const LoginPage = () => {
             </p>
             <p className="font-semibold text-start">
               Email:
-              <Input id="email" type="email"></Input>
+              <Input
+                type="email"
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+              ></Input>
             </p>
             <p className="font-semibold text-start">
               Password:
-              <Input id="password" type="password"></Input>
+              <Input
+                type="password"
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
+              ></Input>
             </p>
             <Button className="my-6 rounded-lg" onClick={signIn}>
               Sign in
