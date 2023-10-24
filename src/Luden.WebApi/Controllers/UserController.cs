@@ -32,7 +32,6 @@ namespace Luden.WebApi.Controllers
             catch (Exception ex)
             {
                 return Problem(ex.InnerException?.Message ?? ex.Message);
-
             }
         }
 
@@ -43,7 +42,6 @@ namespace Luden.WebApi.Controllers
             {
                 var result = await _userService.ValidateUser(req);
                 return Ok(result);
-
             }
             catch (UserNotFoundException ex)
             {
@@ -52,7 +50,6 @@ namespace Luden.WebApi.Controllers
             catch (Exception ex)
             {
                 return Problem(ex.InnerException?.Message ?? ex.Message);
-
             }
         }
 

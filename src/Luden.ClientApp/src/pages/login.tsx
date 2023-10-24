@@ -18,7 +18,8 @@ const LoginPage = () => {
         email,
         password,
       })
-      .then(() => {
+      .then((response) => {
+        localStorage.setItem('token', response.data.token)
         toast({
           title: 'Sucess',
           description: 'welcome back!',

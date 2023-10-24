@@ -20,7 +20,8 @@ const CreateAccount = () => {
         email,
         password,
       })
-      .then(() => {
+      .then((response) => {
+        localStorage.setItem('token', response.data.token)
         toast({
           title: 'Sucess',
           description: 'You have successfully create an account!',
