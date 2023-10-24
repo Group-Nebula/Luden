@@ -25,10 +25,10 @@ const LoginPage = () => {
           variant: 'default',
         })
       })
-      .catch(() => {
+      .catch((error) => {
         toast({
           title: 'Something went wrong',
-          description: 'Please try again later.',
+          description: error.response.data,
           variant: 'destructive',
         })
       })
