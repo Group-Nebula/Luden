@@ -6,14 +6,14 @@ import axios from 'axios'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const CreateAccount = () => {
+const SignUp = () => {
   const { toast } = useToast()
 
   const [email, setEmail] = useState('')
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
-  function signUp() {
+  function createUser() {
     axios
       .post(Endpoints.CreateUser, {
         userName,
@@ -30,8 +30,8 @@ const CreateAccount = () => {
       })
       .catch((error) => {
         toast({
-          title: 'Something went wrong',
-          description: error.response.data,
+          title: error.response.data.title,
+          description: error.response.data.detail,
           variant: 'destructive',
         })
       })
@@ -81,7 +81,7 @@ const CreateAccount = () => {
                 }}
               ></Input>
             </p>
-            <Button className="my-6 rounded-lg" onClick={signUp}>
+            <Button className="my-6 rounded-lg" onClick={createUser}>
               Sign up
             </Button>
           </div>
@@ -92,4 +92,4 @@ const CreateAccount = () => {
   )
 }
 
-export default CreateAccount
+export default SignUp

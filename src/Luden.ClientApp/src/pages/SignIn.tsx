@@ -6,13 +6,13 @@ import { useToast } from '@/components/ui/use-toast.ts'
 import axios from 'axios'
 import { useState } from 'react'
 
-const LoginPage = () => {
+const SignIn = () => {
   const { toast } = useToast()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function signIn() {
+  function validateUser() {
     axios
       .post(Endpoints.ValidateUser, {
         email,
@@ -28,8 +28,8 @@ const LoginPage = () => {
       })
       .catch((error) => {
         toast({
-          title: 'Something went wrong',
-          description: error.response.data,
+          title: error.response.data.title,
+          description: error.response.data.detail,
           variant: 'destructive',
         })
       })
@@ -71,7 +71,7 @@ const LoginPage = () => {
                 }}
               ></Input>
             </p>
-            <Button className="my-6 rounded-lg" onClick={signIn}>
+            <Button className="my-6 rounded-lg" onClick={validateUser}>
               Sign in
             </Button>
           </div>
@@ -81,4 +81,4 @@ const LoginPage = () => {
     </div>
   )
 }
-export default LoginPage
+export default SignIn
