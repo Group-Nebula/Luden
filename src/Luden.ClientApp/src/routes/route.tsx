@@ -1,5 +1,6 @@
 import CreateAccount from '@/pages/create-account'
 import LandingPage from '@/pages/landing-page'
+import UserSettings from '@/pages/user-settings'
 import { RouteObject } from 'react-router-dom'
 
 const routes: RouteObject[] = [
@@ -14,6 +15,10 @@ const routes: RouteObject[] = [
   {
     // path: '/login',
     // children: <LandingPage />,
+  },
+  {
+    path: '/user',
+    element: <UserSettings />,
   },
 ]
 
