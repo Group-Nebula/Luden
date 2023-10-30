@@ -1,11 +1,19 @@
-import { ChevronsLeft, MenuIcon } from 'lucide-react'
-import { ElementRef, useEffect, useRef, useState } from 'react'
-import { useMediaQuery } from 'usehooks-ts'
+import { ChevronsLeft } from 'lucide-react'
+import { RefObject, useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { Outlet } from 'react-router-dom'
 
-export const Navbar = (props) => {
+interface NavbarProps {
+  isMobile: boolean
+  resetWidth: () => void
+  sidebarRef: RefObject<HTMLElement>
+  navbarRef: RefObject<HTMLDivElement>
+  setIsCollapsed: (arg: boolean) => void
+  setIsResetting: (arg: boolean) => void
+  isResetting: boolean
+}
+
+export const Navbar = (props: NavbarProps) => {
   const isResizingRef = useRef(false)
 
   useEffect(() => {

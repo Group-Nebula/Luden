@@ -1,5 +1,11 @@
 import { Navigate } from 'react-router-dom'
-const ProtectedRoute = ({ children }) => {
+import { ReactNode } from 'react'
+
+interface ProtectedRouteProps {
+  children: ReactNode
+}
+
+const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   if (
     localStorage.getItem('token') === null ||
     localStorage.getItem('token') === 'undefined' ||
