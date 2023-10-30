@@ -25,13 +25,29 @@ namespace Luden.WebApi.Controllers
                 var result = await _userService.CreateUser(user);
                 return Ok(result);
             }
-            catch (UserAlreadyExistsException ex)
+            catch (UserAlreadyExistsException)
             {
-                return BadRequest(ex.InnerException?.Message ?? ex.Message);
+                return Conflict(new ProblemDetails
+                {
+                    Status = StatusCodes.Status409Conflict,
+                    Title = "User already exists",
+                    Detail = "This username or email alredy exists",
+                    Instance = HttpContext.Request.Path
+                });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Problem(ex.InnerException?.Message ?? ex.Message);
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    Title = "Ops! Something went wrong",
+                    Detail = "Try again later",
+                    Instance = HttpContext.Request.Path
+                })
+                {
+                    ContentTypes = { "application/problem+json" },
+                    StatusCode = StatusCodes.Status500InternalServerError
+                };
             }
         }
 
@@ -43,13 +59,33 @@ namespace Luden.WebApi.Controllers
                 var result = await _userService.ValidateUser(req);
                 return Ok(result);
             }
-            catch (UserNotFoundException ex)
+            catch (UserNotFoundException)
             {
-                return BadRequest(ex.InnerException?.Message ?? ex.Message);
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status403Forbidden,
+                    Title = "User not found",
+                    Detail = "This email or password is incorrect",
+                    Instance = HttpContext.Request.Path
+                })
+                {
+                    ContentTypes = { "application/problem+json" },
+                    StatusCode = StatusCodes.Status403Forbidden
+                };
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Problem(ex.InnerException?.Message ?? ex.Message);
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    Title = "Ops! Something went wrong",
+                    Detail = "Try again later",
+                    Instance = HttpContext.Request.Path
+                })
+                {
+                    ContentTypes = { "application/problem+json" },
+                    StatusCode = StatusCodes.Status500InternalServerError
+                };
             }
         }
 
@@ -61,9 +97,15 @@ namespace Luden.WebApi.Controllers
                 var result = await _userService.GetAllActiveUsers(username);
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Problem(ex.InnerException?.Message ?? ex.Message);
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    Title = "Ops! Something went wrong",
+                    Detail = "Try again later",
+                    Instance = HttpContext.Request.Path
+                });
             }
         }
     }
