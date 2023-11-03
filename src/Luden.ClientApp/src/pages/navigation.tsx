@@ -55,7 +55,7 @@ const Navigation = () => {
             />
           )}
         </div>
-        <Outlet />
+        {isMobile ? isCollapsed && <Outlet /> : <Outlet />}
       </div>
     </ProtectedRoute>
   )

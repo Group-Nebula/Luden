@@ -74,7 +74,7 @@ export const Navbar = (props: NavbarProps) => {
     <aside
       ref={props.sidebarRef}
       className={cn(
-        'group/sidebar h-[100vh] bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]',
+        'group/sidebar h-[100vh] bg-muted overflow-y-auto relative flex w-60 flex-col z-[99999]',
         props.isResetting && 'transition-all ease-in-out duration-300',
         props.isMobile && 'w-0',
       )}
@@ -84,7 +84,7 @@ export const Navbar = (props: NavbarProps) => {
         size="icon"
         variant="link"
         className={cn(
-          'h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
+          'h-6 w-6 text-muted-foreground rounded-sm hover:bg-background absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
           props.isMobile && 'opacity-100',
         )}
       >
