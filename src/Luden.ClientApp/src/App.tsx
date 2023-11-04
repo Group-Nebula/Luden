@@ -3,6 +3,7 @@ import LandingPage from './pages/landing-page'
 import Navigation from './pages/navigation'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
+import Home from './pages/home'
 
 const App = () => {
   return (
@@ -13,14 +14,7 @@ const App = () => {
         <Route path="sign-up" element={<SignUp />} />
         <Route path="*" element={<h1>404</h1>} />
         <Route path="app" element={<Navigation />}>
-          <Route
-            path="home"
-            element={
-              <section className="section">
-                <h2>home page</h2>
-              </section>
-            }
-          />
+          <Route path="home" element={<Home />} />
         </Route>
       </Route>
     </Routes>

@@ -1,7 +1,10 @@
-import { ChevronsLeft } from 'lucide-react'
+import { ChevronsLeft, SeparatorHorizontal } from 'lucide-react'
 import { RefObject, useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import LudenImagotype from '@/components/luden-logo'
+import { Link } from 'react-router-dom'
+import { Separator } from '@radix-ui/react-dropdown-menu'
 
 interface NavbarProps {
   isMobile: boolean
@@ -95,6 +98,11 @@ export const Navbar = (props: NavbarProps) => {
         onClick={props.resetWidth}
         className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0"
       />
+      <div>
+        <Link to="/app/home">
+          <LudenImagotype className="flex justify-center mx-16 my-2" />
+        </Link>
+      </div>
     </aside>
   )
 }
