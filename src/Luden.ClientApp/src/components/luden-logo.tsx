@@ -2,12 +2,13 @@ import { HTMLAttributes } from 'react'
 
 const isDarkMode = localStorage.getItem('vite-ui-theme') === 'dark'
 
-type LudenImagotypeProps = HTMLAttributes<HTMLDivElement>
+type LudenImagotypeProps = React.SVGProps<SVGSVGElement>
 
 const LudenImagotype = (props: LudenImagotypeProps) => {
-  const LudenDarkImagotype = () => {
+  const LudenDarkImagotype = (props: LudenImagotypeProps) => {
     return (
       <svg
+        {...props}
         width="160"
         height="71"
         viewBox="0 0 159 71"
@@ -69,9 +70,10 @@ const LudenImagotype = (props: LudenImagotypeProps) => {
     )
   }
 
-  const LudenLightImagotype = () => {
+  const LudenLightImagotype = (props: LudenImagotypeProps) => {
     return (
       <svg
+        {...props}
         width="160"
         height="71"
         viewBox="0 0 160 71"
@@ -129,10 +131,10 @@ const LudenImagotype = (props: LudenImagotypeProps) => {
     )
   }
 
-  return (
-    <div {...props}>
-      {isDarkMode ? <LudenDarkImagotype /> : <LudenLightImagotype />}
-    </div>
+  return isDarkMode ? (
+    <LudenDarkImagotype {...props} />
+  ) : (
+    <LudenLightImagotype {...props} />
   )
 }
 

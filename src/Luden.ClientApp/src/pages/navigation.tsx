@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/navbar'
 import ProtectedRoute from '@/components/protected-route'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/lib/utils'
 import { MenuIcon } from 'lucide-react'
 import { ElementRef, useRef, useState } from 'react'
@@ -13,6 +14,15 @@ const Navigation = () => {
   const [isCollapsed, setIsCollapsed] = useState(isMobile)
   const sidebarRef = useRef<ElementRef<'aside'>>(null)
 
+  const Page = () => {
+    return (
+      <ScrollArea>
+        <div className="bg-background h-[90vh] mx-[2vw] my-[2vh]">
+          <Outlet />
+        </div>
+      </ScrollArea>
+    )
+  }
   const resetWidth = () => {
     if (sidebarRef.current && navbarRef.current) {
       setIsCollapsed(false)
@@ -46,16 +56,16 @@ const Navigation = () => {
           isMobile && 'left-0 w-full',
         )}
       >
-        <div className="bg-transparent">
+        <div className="bg-primary-foreground h-[6vh] flex flex-row">
           {isCollapsed && (
             <MenuIcon
               onClick={resetWidth}
               role="button"
-              className="text-muted-foreground"
+              className="text-muted-foreground h-full w-7 mx-2 transition-all ease-in-out duration-100"
             />
           )}
         </div>
-        {isMobile ? isCollapsed && <Outlet /> : <Outlet />}
+        {isMobile ? isCollapsed && <Page /> : <Page />}
       </div>
     </ProtectedRoute>
   )
