@@ -3,6 +3,7 @@ import LandingPage from './pages/landing-page'
 import Navigation from './pages/navigation'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
+import ErrorPage from './pages/error-page'
 
 const App = () => {
   return (
@@ -11,7 +12,7 @@ const App = () => {
         <Route index element={<LandingPage />} />
         <Route path="login" element={<SignIn />} />
         <Route path="create-account" element={<SignUp />} />
-        <Route path="*" element={<h1>404</h1>} />
+        <Route path="*" element={<ErrorPage />} />
         <Route path="app" element={<Navigation />}>
           <Route
             path="home"
