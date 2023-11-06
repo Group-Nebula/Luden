@@ -17,12 +17,20 @@ const Navigation = () => {
   const Page = () => {
     return (
       <ScrollArea>
-        <div className="bg-background h-[90vh] mx-[2vw] my-[2vh]">
+        <div
+          className="bg-background h-[90vh] mx-[2vw] my-[2vh]"
+          style={
+            isCollapsed
+              ? { width: 'calc(98vw)' }
+              : { width: 'calc(98vw - 240px)' }
+          }
+        >
           <Outlet />
         </div>
       </ScrollArea>
     )
   }
+
   const resetWidth = () => {
     if (sidebarRef.current && navbarRef.current) {
       setIsCollapsed(false)

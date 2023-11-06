@@ -1,13 +1,32 @@
-const HorizontalList = () => {
-  const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+import { useRef } from 'react'
+import { ScrollArea, ScrollBar } from './ui/scroll-area'
+
+interface HorizontalListProps {
+  items: { id: number; name: string; description: string; image: string }[]
+}
+
+const HorizontalList = (props: HorizontalListProps) => {
   return (
-    <div className="flex flex-row">
-      {items.map((index) => (
-        <div key={index} className="m-1">
-          <div className="w-[15rem] h-[15rem] bg-primary-foreground"></div>
-        </div>
-      ))}
-    </div>
+    <ScrollArea className="w-full">
+      <div className="flex flex-row w-max m-2">
+        {props.items.map((item) => (
+          <div key={item.id} className="m-1 w-[12rem]">
+            <img
+              src={item.image}
+              alt={item.name}
+              className="cover h-[12rem] rounded-md"
+            />
+            <div className="space-y-1 text-sm">
+              <h3 className="font-medium leading-none">{item.name}</h3>
+              <p className="text-xs text-muted-foreground">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <ScrollBar orientation="horizontal" className="mt-2" />
+    </ScrollArea>
   )
 }
 
