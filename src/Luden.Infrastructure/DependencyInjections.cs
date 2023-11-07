@@ -14,7 +14,7 @@ namespace Luden.Infrastructure
         public static void ConfigureServices(IServiceCollection services, IConfiguration Configuration)
         {
             services.AddDbContext<LudenDbContext>(options =>
-                options.UseSqlServer("name=ConnectionStrings:DefaultConnection",
+                options.UseSqlServer("name=ConnectionStrings:WorkConnection",
                 x => x.MigrationsAssembly("Luden.Infrastructure")));
 
             services.AddScoped(typeof(IBaseRepositoryAsync<>), typeof(BaseRepositoryAsync<>));

@@ -1,11 +1,10 @@
-import { useRef } from 'react'
 import { ScrollArea, ScrollBar } from './ui/scroll-area'
 
-interface HorizontalListProps {
+interface HorizontalList {
   items: { id: number; name: string; description: string; image: string }[]
 }
 
-const HorizontalList = (props: HorizontalListProps) => {
+const HorizontalList = (props: HorizontalList) => {
   return (
     <ScrollArea className="w-full">
       <div className="flex flex-row w-max m-2">

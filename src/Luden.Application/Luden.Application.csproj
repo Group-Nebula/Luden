@@ -10,6 +10,11 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Requests\Character\" />
+    <Folder Include="Models\Requests\Rpg\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

@@ -1,7 +1,7 @@
 ﻿using Luden.Application.Interfaces;
-using Luden.Application.Models.Requests;
-using Luden.Application.Models.Responses;
-using Luden.Domain.Exceptions;
+using Luden.Application.Models.Requests.User;
+using Luden.Application.Models.Responses.User;
+using Luden.Domain.Exceptions.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luden.WebApi.Controllers
