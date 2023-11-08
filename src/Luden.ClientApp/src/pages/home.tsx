@@ -1,10 +1,12 @@
 import { Endpoints } from '@/api/Endpoints'
 import HorizontalList from '@/components/horizontal-list'
+import { NoDataAnimation } from '@/components/lottie-animations'
 import { Button } from '@/components/ui/button'
 import { DropdownMenuSeparator } from '@/components/ui/dropdown-menu'
 import { useToast } from '@/components/ui/use-toast'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useEventCallback } from 'usehooks-ts'
 
 const Home = () => {
   const { toast } = useToast()
@@ -19,7 +21,7 @@ const Home = () => {
   const [characters, setCharacters] = useState<ListItem[]>([])
   const [rpgs, setRpgs] = useState<ListItem[]>([])
 
-  const getAllCharacters = () => {
+  const getAllCharacters = useEventCallback(() => {
     axios
       .get(Endpoints.GetAllCharacter)
       .then((response) => {
@@ -32,9 +34,9 @@ const Home = () => {
           variant: 'destructive',
         })
       })
-  }
+  })
 
-  const getAllRpgs = () => {
+  const getAllRpgs = useEventCallback(() => {
     axios
       .get(Endpoints.GetAllRpg)
       .then((response) => {
@@ -47,12 +49,12 @@ const Home = () => {
           variant: 'destructive',
         })
       })
-  }
+  })
 
   useEffect(() => {
     getAllCharacters()
     getAllRpgs()
-  }, [characters, rpgs])
+  }, [])
 
   return (
     <div className="h-full w-full justify-center">
@@ -76,11 +78,19 @@ const Home = () => {
           <HorizontalList items={rpgs} />
         </div>
       )}
-      {
-        characters.length < 0 && rpgs.length < 0 && (
-
-        )
-      }
+      {!(characters.length > 0) && !(rpgs.length > 0) && (
+        <div className="flex flex-col items-center justify-center place-items-center">
+          <NoDataAnimation className="md:w-[30vw] md:w-[30vh] lg:w-[40vw] lg:w-[50vh]" />
+          <p className="text-lg text-foreground text-center">
+            You have no characters or rooms yet.
+            <br /> <b>Start adding some!</b>
+          </p>
+          <Button className="mt-4">Create Character</Button>
+          <Button className="mt-4" variant="outline">
+            Create Room
+          </Button>
+        </div>
+      )}
     </div>
   )
 }
