@@ -8,7 +8,6 @@ using Luden.Domain.Entities;
 using Luden.Domain.Exceptions;
 using Luden.Domain.Specifications;
 
-
 namespace Luden.Application.Services
 {
     public class UserService : IUserService
