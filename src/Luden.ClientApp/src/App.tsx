@@ -3,6 +3,9 @@ import LandingPage from './pages/landing-page'
 import Navigation from './pages/navigation'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
+import Settings from './pages/Settings/Settings'
+import ProfileSettings from './pages/Settings/profileSettings'
+import AppearenceSettings from './pages/Settings/appearenceSettings'
 
 const App = () => {
   return (
@@ -21,6 +24,11 @@ const App = () => {
               </section>
             }
           />
+        </Route>
+        <Route path="settings" element={<Settings />}>
+          <Route index element={<ProfileSettings />}></Route>
+          <Route path="profile" element={<ProfileSettings />}></Route>
+          <Route path="appearence" element={<AppearenceSettings />}></Route>
         </Route>
       </Route>
     </Routes>
