@@ -9,5 +9,9 @@ namespace Luden.Domain.Specifications
         {
             return new BaseSpecification<Character>(x => x.Name.Contains(charactername) && !x.IsDeleted);
         }
+        public static BaseSpecification<Character> GetAllActiveCharactersByUserIdSpec(Guid userId)
+        {
+            return new BaseSpecification<Character>(x => x.Id.Equals(userId) && !x.IsDeleted);
+        }
     }
 }

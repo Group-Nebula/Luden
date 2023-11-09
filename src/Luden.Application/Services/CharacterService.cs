@@ -27,5 +27,16 @@ namespace Luden.Application.Services
                 Data = characters.Select(x => new CharacterDTO(x))
             };
         }
+        public async Task<GetAllActiveCharactersRes> GetAllCharactersByUserId(Guid userId)
+        {
+            var activeCharactersSpec = CharacterSpecifications.GetAllActiveCharactersByUserIdSpec(userId);
+
+            var characters = await _unitOfWork.Repository<Character>().ListAsync(activeCharactersSpec);
+
+            return new GetAllActiveCharactersRes()
+            {
+                Data = characters.Select(x => new CharacterDTO(x))
+            };
+        }
     }
 }

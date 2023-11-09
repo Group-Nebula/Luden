@@ -16,11 +16,11 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllActiveCharactersRes>> GetAll([FromQuery] string? charactername)
+        public async Task<ActionResult<GetAllActiveCharactersRes>> GetAllByUserId(Guid UserId)
         {
             try
             {
-                var result = await _characterService.GetAllActiveCharacters(charactername);
+                var result = await _characterService.GetAllCharactersByUserId(UserId);
                 return Ok(result);
             }
             catch (Exception)
