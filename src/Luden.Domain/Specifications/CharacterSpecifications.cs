@@ -5,13 +5,13 @@ namespace Luden.Domain.Specifications
 {
     public class CharacterSpecifications
     {
-        public static BaseSpecification<Character> GetAllActiveCharactersSpec(string charactername)
+        public static BaseSpecification<Character> GetAllActiveCharactersSpec(string characterName)
         {
-            return new BaseSpecification<Character>(x => x.Name.Contains(charactername) && !x.IsDeleted);
+            return new BaseSpecification<Character>(x => x.Name.Contains(characterName) && !x.IsDeleted);
         }
         public static BaseSpecification<Character> GetAllActiveCharactersByUserIdSpec(Guid userId)
         {
-            return new BaseSpecification<Character>(x => x.Id.Equals(userId) && !x.IsDeleted);
+            return new BaseSpecification<Character>(x => x.UserId.Equals(userId) && !x.IsDeleted);
         }
     }
 }

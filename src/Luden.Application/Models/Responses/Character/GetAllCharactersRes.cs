@@ -2,7 +2,7 @@
 
 namespace Luden.Application.Models.Responses.Character
 {
-    public class GetAllActiveCharactersRes
+    public class GetAllCharactersRes
     {
         public IEnumerable<CharacterDTO> Data { get; set; }
     }

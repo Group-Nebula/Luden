@@ -2,7 +2,7 @@
 
 namespace Luden.Application.Models.Responses.Rpg
 {
-    public class GetAllActiveRpgsRes
+    public class GetAllRpgsRes
     {
         public IEnumerable<RpgDTO> Data { get; set; }
     }

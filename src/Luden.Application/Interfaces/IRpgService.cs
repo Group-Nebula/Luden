@@ -4,6 +4,7 @@ namespace Luden.Application.Interfaces
 {
     public interface IRpgService
     {
-        Task<GetAllActiveRpgsRes> GetAllActiveRpgs(string rpgname);
+        Task<GetAllRpgsRes> GetAllActive(string rpgName);
+        Task<GetAllRpgsRes> GetAllActiveByUserId(Guid userId);
     }
 }

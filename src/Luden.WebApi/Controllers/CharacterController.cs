@@ -16,11 +16,31 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllActiveCharactersRes>> GetAllByUserId(Guid UserId)
+        public async Task<ActionResult<GetAllCharactersRes>> GetAllActive([FromQuery] string characterName)
         {
             try
             {
-                var result = await _characterService.GetAllCharactersByUserId(UserId);
+                var result = await _characterService.GetAllActiveCharacters(characterName);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    Title = "Ops! Something went wrong",
+                    Detail = "Try again later",
+                    Instance = HttpContext.Request.Path
+                });
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<GetAllCharactersRes>> GetAllByUserId([FromQuery] Guid userId)
+        {
+            try
+            {
+                var result = await _characterService.GetAllActiveCharactersByUserId(userId);
                 return Ok(result);
             }
             catch (Exception)

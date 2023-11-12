@@ -4,6 +4,7 @@ import { NoDataAnimation } from '@/components/lottie-animations'
 import { Button } from '@/components/ui/button'
 import { DropdownMenuSeparator } from '@/components/ui/dropdown-menu'
 import { useToast } from '@/components/ui/use-toast'
+import { parseJwt } from '@/utils/token'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useEventCallback } from 'usehooks-ts'
@@ -21,11 +22,14 @@ const Home = () => {
   const [characters, setCharacters] = useState<ListItem[]>([])
   const [rpgs, setRpgs] = useState<ListItem[]>([])
 
+  const token = localStorage.getItem('token') || ''
+  const userId = (parseJwt(token) as { unique_name: string }).unique_name
+
   const getAllCharacters = useEventCallback(() => {
     axios
-      .get(Endpoints.GetAllCharacter)
+      .get(Endpoints.GetAllCharactersByUserId + `?userId=${userId}`)
       .then((response) => {
-        setCharacters(response.data)
+        setCharacters(response.data.data)
       })
       .catch((error) => {
         toast({
@@ -38,9 +42,9 @@ const Home = () => {
 
   const getAllRpgs = useEventCallback(() => {
     axios
-      .get(Endpoints.GetAllRpg)
+      .get(Endpoints.GetAllRpgsByUserId + `?userId=${userId}`)
       .then((response) => {
-        setRpgs(response.data)
+        setRpgs(response.data.data)
       })
       .catch((error) => {
         toast({
@@ -80,7 +84,7 @@ const Home = () => {
       )}
       {!(characters.length > 0) && !(rpgs.length > 0) && (
         <div className="flex flex-col items-center justify-center place-items-center">
-          <NoDataAnimation className="md:w-[30vw] md:w-[30vh] lg:w-[40vw] lg:w-[50vh]" />
+          <NoDataAnimation className="md:w-[30vw] lg:w-[50vh]" />
           <p className="text-lg text-foreground text-center">
             You have no characters or rooms yet.
             <br /> <b>Start adding some!</b>

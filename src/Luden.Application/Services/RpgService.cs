@@ -16,13 +16,25 @@ namespace Luden.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<GetAllActiveRpgsRes> GetAllActiveRpgs(string rpgname)
+        public async Task<GetAllRpgsRes> GetAllActive(string rpgName)
         {
-            var activeRpgsSpec = RpgSpecifications.GetAllActiveRpgsSpec(rpgname);
+            var activeRpgsSpec = RpgSpecifications.GetAllActiveRpgsSpec(rpgName);
 
             var rpgs = await _unitOfWork.Repository<Rpg>().ListAsync(activeRpgsSpec);
 
-            return new GetAllActiveRpgsRes()
+            return new GetAllRpgsRes()
+            {
+                Data = rpgs.Select(x => new RpgDTO(x))
+            };
+        }
+
+        public async Task<GetAllRpgsRes> GetAllActiveByUserId(Guid userId)
+        {
+            var activeRpgsSpec = RpgSpecifications.GetAllActiveByUserIdRpgsSpec(userId);
+
+            var rpgs = await _unitOfWork.Repository<Rpg>().ListAsync(activeRpgsSpec);
+
+            return new GetAllRpgsRes()
             {
                 Data = rpgs.Select(x => new RpgDTO(x))
             };

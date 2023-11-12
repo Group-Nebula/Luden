@@ -16,11 +16,31 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllActiveRpgsRes>> GetAll([FromQuery] string? rpgname)
+        public async Task<ActionResult<GetAllRpgsRes>> GetAll([FromQuery] string? rpgName)
         {
             try
             {
-                var result = await _rpgService.GetAllActiveRpgs(rpgname);
+                var result = await _rpgService.GetAllActive(rpgName);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    Title = "Ops! Something went wrong",
+                    Detail = "Try again later",
+                    Instance = HttpContext.Request.Path
+                });
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<GetAllRpgsRes>> GetAllByUserId([FromQuery] Guid userId)
+        {
+            try
+            {
+                var result = await _rpgService.GetAllActiveByUserId(userId);
                 return Ok(result);
             }
             catch (Exception)

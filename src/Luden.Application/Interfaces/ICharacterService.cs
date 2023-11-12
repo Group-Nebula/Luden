@@ -4,7 +4,7 @@ namespace Luden.Application.Interfaces
 {
     public interface ICharacterService
     {
-        Task<GetAllActiveCharactersRes> GetAllActiveCharacters(string charactername);
-        Task<GetAllActiveCharactersRes> GetAllCharactersByUserId(Guid userId);
+        Task<GetAllCharactersRes> GetAllActiveCharacters(string characterName);
+        Task<GetAllCharactersRes> GetAllActiveCharactersByUserId(Guid userId);
     }
 }
