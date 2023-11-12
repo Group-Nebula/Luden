@@ -1,5 +1,5 @@
-using Luden.Application.Models.Requests;
-using Luden.Application.Models.Responses;
+using Luden.Application.Models.Requests.User;
+using Luden.Application.Models.Responses.User;
 
 namespace Luden.Application.Interfaces
 {

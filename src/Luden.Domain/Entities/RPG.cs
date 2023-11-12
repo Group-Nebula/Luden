@@ -11,6 +11,7 @@ namespace Luden.Domain.Entities
         public Guid RpgSystemId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ImageUrl { get; set; }
         public DateTime RpgDate { get; set; }
 
         //Base Entity Properties
