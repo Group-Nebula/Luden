@@ -1,5 +1,5 @@
-using Luden.Application.Models.Requests;
-using Luden.Application.Models.Responses;
+using Luden.Application.Models.Requests.User;
+using Luden.Application.Models.Responses.User;
 
 namespace Luden.Application.Interfaces
 {
@@ -10,5 +10,7 @@ namespace Luden.Application.Interfaces
         Task<ValidateUserRes> ValidateUser(ValidateUserReq req);
 
         Task<GetAllActiveUsersRes> GetAllActiveUsers(string? username);
+
+        Task UpdateUser(UpdateUserReq req);
     }
 }

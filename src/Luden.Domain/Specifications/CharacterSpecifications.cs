@@ -1,0 +1,17 @@
+﻿using Luden.Domain.Core.Specifications;
+using Luden.Domain.Entities;
+
+namespace Luden.Domain.Specifications
+{
+    public class CharacterSpecifications
+    {
+        public static BaseSpecification<Character> GetAllActiveCharactersSpec(string characterName)
+        {
+            return new BaseSpecification<Character>(x => x.Name.Contains(characterName) && !x.IsDeleted);
+        }
+        public static BaseSpecification<Character> GetAllActiveCharactersByUserIdSpec(Guid userId)
+        {
+            return new BaseSpecification<Character>(x => x.UserId.Equals(userId) && !x.IsDeleted);
+        }
+    }
+}

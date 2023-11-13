@@ -18,8 +18,8 @@ namespace Luden.Domain.Entities
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public string Description { get; set; }
+        public string ImageUrl { get; set; }
         public CharacterStatus Status { get; set; }
-
 
         //Relationships
         public User User { get; set; }

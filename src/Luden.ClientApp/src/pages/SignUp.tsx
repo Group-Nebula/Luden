@@ -1,20 +1,22 @@
+import { Endpoints } from '@/api/Endpoints'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Link } from 'react-router-dom'
-import { Endpoints } from '../api/Endpoints.ts'
-import { useToast } from '@/components/ui/use-toast.ts'
+import { useToast } from '@/components/ui/use-toast'
 import axios from 'axios'
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-const LoginPage = () => {
+const SignUp = () => {
   const { toast } = useToast()
-
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
+  const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
-  function signIn() {
+  function createUser() {
     axios
-      .post(Endpoints.ValidateUser, {
+      .post(Endpoints.CreateUser, {
+        userName,
         email,
         password,
       })
@@ -22,14 +24,16 @@ const LoginPage = () => {
         localStorage.setItem('token', response.data.token)
         toast({
           title: 'Sucess',
-          description: 'welcome back!',
+          description: 'You have successfully create an account!',
           variant: 'default',
         })
+
+        navigate('/app/home')
       })
       .catch((error) => {
         toast({
-          title: 'Something went wrong',
-          description: error.response.data,
+          title: error.response.data.title,
+          description: error.response.data.detail,
           variant: 'destructive',
         })
       })
@@ -41,17 +45,25 @@ const LoginPage = () => {
         <div className="mx-auto flex w-full flex-col space-y-6 sm:w-[350px] p-1">
           <div className="flex flex-col p-1 space-y-2 text-center">
             <div className="w-full text-end">
-              <Link to="/create-account">
-                <Button variant="link" size="lg" className="rounded-lg ">
-                  Sign up
+              <Link to="/sign-in">
+                <Button variant="link" size="xlg">
+                  Sign in
                 </Button>
               </Link>
             </div>
             <h1 className="text-2xl font-semibold tracking-tight ">
-              Login in your account
+              Create an account
             </h1>
             <p className="text-sm text-muted-foreground">
-              Enter your email below to enter in your account
+              Enter your email below to create your account
+            </p>
+            <p className="font-semibold text-start">
+              Username:
+              <Input
+                onChange={(e) => {
+                  setUserName(e.target.value)
+                }}
+              ></Input>
             </p>
             <p className="font-semibold text-start">
               Email:
@@ -71,8 +83,8 @@ const LoginPage = () => {
                 }}
               ></Input>
             </p>
-            <Button className="my-6 rounded-lg" onClick={signIn}>
-              Sign in
+            <Button className="my-6 rounded-lg" onClick={createUser}>
+              Sign up
             </Button>
           </div>
         </div>
@@ -81,4 +93,5 @@ const LoginPage = () => {
     </div>
   )
 }
-export default LoginPage
+
+export default SignUp
