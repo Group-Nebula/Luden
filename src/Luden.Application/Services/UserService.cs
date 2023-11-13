@@ -1,11 +1,11 @@
 using Luden.Application.Core.Services;
 using Luden.Application.Interfaces;
 using Luden.Application.Models.DTOs;
-using Luden.Application.Models.Requests;
-using Luden.Application.Models.Responses;
+using Luden.Application.Models.Requests.User;
+using Luden.Application.Models.Responses.User;
 using Luden.Domain.Core.Repositories;
 using Luden.Domain.Entities;
-using Luden.Domain.Exceptions;
+using Luden.Domain.Exceptions.User;
 using Luden.Domain.Specifications;
 
 namespace Luden.Application.Services

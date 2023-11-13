@@ -1,4 +1,4 @@
-namespace Luden.Application.Models.Responses
+namespace Luden.Application.Models.Responses.User
 {
     public class ValidateUserRes
     {

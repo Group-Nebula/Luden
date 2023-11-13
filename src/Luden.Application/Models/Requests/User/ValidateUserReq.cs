@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Luden.Application.Models.Requests
+namespace Luden.Application.Models.Requests.User
 {
     public class ValidateUserReq
     {

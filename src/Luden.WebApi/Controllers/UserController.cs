@@ -1,7 +1,7 @@
 ﻿using Luden.Application.Interfaces;
-using Luden.Application.Models.Requests;
-using Luden.Application.Models.Responses;
-using Luden.Domain.Exceptions;
+using Luden.Application.Models.Requests.User;
+using Luden.Application.Models.Responses.User;
+using Luden.Domain.Exceptions.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luden.WebApi.Controllers
@@ -98,6 +98,26 @@ namespace Luden.WebApi.Controllers
                 return Ok(result);
             }
             catch (Exception)
+            {
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    Title = "Ops! Something went wrong",
+                    Detail = "Try again later",
+                    Instance = HttpContext.Request.Path
+                });
+            }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Update([FromQuery] string username)
+        {
+            try
+            { 
+                await _userService.UpdateUser(username);
+                return Ok();
+            }
+            catch
             {
                 return new ObjectResult(new ProblemDetails
                 {

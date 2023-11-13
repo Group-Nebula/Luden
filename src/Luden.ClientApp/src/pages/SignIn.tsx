@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Endpoints } from '../api/Endpoints.ts'
 import { useToast } from '@/components/ui/use-toast.ts'
 import axios from 'axios'
@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 const SignIn = () => {
   const { toast } = useToast()
-
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -25,6 +25,7 @@ const SignIn = () => {
           description: 'welcome back!',
           variant: 'default',
         })
+        navigate('/app/home')
       })
       .catch((error) => {
         toast({
@@ -41,7 +42,7 @@ const SignIn = () => {
         <div className="mx-auto flex w-full flex-col space-y-6 sm:w-[350px] p-1">
           <div className="flex flex-col p-1 space-y-2 text-center">
             <div className="w-full text-end">
-              <Link to="/create-account">
+              <Link to="/sign-up">
                 <Button variant="link" size="lg" className="rounded-lg ">
                   Sign up
                 </Button>
