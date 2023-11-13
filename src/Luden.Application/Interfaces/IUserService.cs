@@ -11,6 +11,6 @@ namespace Luden.Application.Interfaces
 
         Task<GetAllActiveUsersRes> GetAllActiveUsers(string? username);
 
-        Task UpdateUser(string? username);
+        Task UpdateUser(UpdateUserReq req);
     }
 }

@@ -80,5 +80,19 @@ namespace Luden.Application.Services
                 Data = users.Select(x => new UserDTO(x)).ToList()
             };
         }
+
+        public async Task UpdateUser(UpdateUserReq req)
+        {
+            var userSpec = UserSpecifications.GetUserById(req.Id);
+
+            var user = await _unitOfWork.Repository<User>().FirstOrDefaultAsync(userSpec);
+
+            if (user == null)
+               throw new UserNotFoundException();
+
+            user.Username = req.UserName;
+
+            _unitOfWork.Repository<User>().Update(user);
+        }
     }
 }

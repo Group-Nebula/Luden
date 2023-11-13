@@ -22,8 +22,7 @@ const Home = () => {
   const [characters, setCharacters] = useState<ListItem[]>([])
   const [rpgs, setRpgs] = useState<ListItem[]>([])
 
-  const token = localStorage.getItem('token') || ''
-  const userId = (parseJwt(token) as { unique_name: string }).unique_name
+  const userId = (parseJwt() as { unique_name: string }).unique_name
 
   const getAllCharacters = useEventCallback(() => {
     axios

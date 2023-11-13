@@ -4,20 +4,21 @@ import { Separator } from '@/components/ui/separator'
 import { useToast } from '@/components/ui/use-toast'
 import { useState } from 'react'
 import axios from 'axios'
+import { parseJwt } from '@/utils/token'
 import { Button } from '@/components/ui/button'
 
 const ProfileSettings = () => {
   const { toast } = useToast()
 
   const [userName, setUserName] = useState('')
-
+  const Id = (parseJwt() as { unique_name: string }).unique_name
   function updateUser() {
     axios
-      .post(Endpoints.UpdateUser, {
+      .put(Endpoints.UpdateUser, {
+        Id,
         userName,
       })
       .then((response) => {
-        localStorage.setItem('token', response.data.token)
         toast({
           title: 'Sucess',
           description: 'Username changed successfully!',
@@ -42,7 +43,12 @@ const ProfileSettings = () => {
       <Separator />
       <div className="mb-3 mt-8">
         <p className="text-xl mb-3">UserName</p>
-        <Input className="rounded"></Input>
+        <Input
+          className="rounded"
+          onChange={(e) => {
+            setUserName(e.target.value)
+          }}
+        ></Input>
         <p className="text-muted-foreground">
           This is the name that everyone can see. Show Them your best NickName!
         </p>
