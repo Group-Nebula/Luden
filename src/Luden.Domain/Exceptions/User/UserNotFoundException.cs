@@ -1,4 +1,4 @@
-namespace Luden.Domain.Exceptions
+namespace Luden.Domain.Exceptions.User
 {
     public class UserNotFoundException : Exception
     {

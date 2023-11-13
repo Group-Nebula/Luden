@@ -4,11 +4,11 @@ import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import axios from 'axios'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
   const { toast } = useToast()
-
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
@@ -27,6 +27,8 @@ const SignUp = () => {
           description: 'You have successfully create an account!',
           variant: 'default',
         })
+
+        navigate('/app/home')
       })
       .catch((error) => {
         toast({
@@ -43,7 +45,7 @@ const SignUp = () => {
         <div className="mx-auto flex w-full flex-col space-y-6 sm:w-[350px] p-1">
           <div className="flex flex-col p-1 space-y-2 text-center">
             <div className="w-full text-end">
-              <Link to="/login">
+              <Link to="/sign-in">
                 <Button variant="link" size="xlg">
                   Sign in
                 </Button>
