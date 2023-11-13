@@ -1,6 +1,7 @@
 import { jwtDecode } from 'jwt-decode'
 
-const parseJwt = (token: string) => {
+const parseJwt = () => {
+  const token = localStorage.getItem('token') || ''
   return jwtDecode(token)
 }
 

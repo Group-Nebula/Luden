@@ -110,11 +110,11 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromQuery] string username)
+        public async Task<ActionResult> Update(UpdateUserReq req)
         {
             try
             { 
-                await _userService.UpdateUser(username);
+                await _userService.UpdateUser(req);
                 return Ok();
             }
             catch

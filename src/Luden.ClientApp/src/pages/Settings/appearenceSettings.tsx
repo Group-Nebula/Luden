@@ -1,7 +1,6 @@
 import App from '@/App'
+import { ModeToggle } from '@/components/ui/mode-toggle'
 import { Separator } from '@/components/ui/separator'
-import { ThemeProvider } from '@/components/ui/theme-provider'
-import { Toaster } from '@/components/ui/toaster'
 
 const appearenceSettings = () => (
   <>
@@ -12,10 +11,7 @@ const appearenceSettings = () => (
     <Separator />
     <div className="mb-3 mt-8">
       <p className="text-xl mb-3">Themes</p>
-      <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-        <App />
-        <Toaster />
-      </ThemeProvider>
+      <ModeToggle />
     </div>
   </>
 )

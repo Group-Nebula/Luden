@@ -49,6 +49,7 @@ namespace Luden.Infrastructure.Repositories
         public void Update(T entity)
         {
             _dbContext.Set<T>().Update(entity);
+            _dbContext.SaveChanges();
         }
 
         public void Delete(T entity)
