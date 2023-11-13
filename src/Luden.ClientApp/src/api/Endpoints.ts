@@ -5,6 +5,7 @@ export enum Endpoints {
   CreateUser = BaseUrl + '/api/user/Create',
   ValidateUser = BaseUrl + '/api/User/Validate',
   GetAllUsers = BaseUrl + '/api/User/GetAll',
+  UpdateUser = BaseUrl + '/api/User/Update',
 
   // [Character]
   GetAllCharacters = BaseUrl + '/api/Character/GetAllActive',
@@ -13,4 +14,5 @@ export enum Endpoints {
   // [Rpg]
   GetAllRpgs = BaseUrl + '/api/Rpg/GetAllActive',
   GetAllRpgsByUserId = BaseUrl + '/api/Rpg/GetAllByUserId',
+  
 }

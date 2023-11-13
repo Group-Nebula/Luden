@@ -108,5 +108,25 @@ namespace Luden.WebApi.Controllers
                 });
             }
         }
+
+        [HttpPut]
+        public async Task<ActionResult> Update([FromQuery] string username)
+        {
+            try
+            { 
+                await _userService.UpdateUser(username);
+                return Ok();
+            }
+            catch
+            {
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    Title = "Ops! Something went wrong",
+                    Detail = "Try again later",
+                    Instance = HttpContext.Request.Path
+                });
+            }
+        }
     }
 }
