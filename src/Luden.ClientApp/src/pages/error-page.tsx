@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function ErrorPage() {
   return (
-    <div className="bg-background text-foreground h-[100vh] flex flex-col items-center">
+    <div className="bg-background text-foreground h-[100vh] flex flex-col items-center justify-center">
       <ErrorPageAnimation className="w-[80vw] md:w-[70vw] lg:w-[50vw]" />
       <h1 className="text-3xl mb-2 lg:text-4xl">Page not found !</h1>
       <h2>Possible Reasons:</h2>

@@ -7,6 +7,7 @@ import ProfileSettings from './pages/Settings/profileSettings'
 import AppearenceSettings from './pages/Settings/appearenceSettings'
 import Home from './pages/home'
 import Navigation from './pages/navigation'
+import ErrorPage from './pages/error-page'
 
 const App = () => {
   return (
