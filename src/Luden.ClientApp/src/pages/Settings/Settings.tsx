@@ -16,8 +16,8 @@ const Settings = () => {
           <ChevronLeft />
         </Button>
       </Link>
-      <div className="bg-background justify-center text-foreground lg:container h-[100vh] flex col max-w-none grid-cols-2 lg:px-0">
-        <div className="flex w-[90%] lg:p-10 rounded-lg flex-col">
+      <div className="bg-background justify-center text-foreground lg:container h-[100vh] flex col max-w-none grid-cols-2 lg:px-0 font-normal">
+        <div className="flex w-[90%] lg:p-10 rounded-lg flex-col ">
           <div className="mb-3">
             <h1 className="text-2xl">Settings</h1>
             <p className="text-muted-foreground">

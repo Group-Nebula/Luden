@@ -109,7 +109,7 @@ export const Navigation = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          'group/sidebar h-[100vh] bg-card overflow-y-auto relative flex w-60 flex-col z-[99999]',
+          'group/sidebar h-[100vh] bg-card overflow-y-auto relative flex w-60 flex-col z-[99999] border-input border-r-[1px]',
           isResetting && 'transition-all ease-in-out duration-300',
           isMobile && 'w-0',
         )}
