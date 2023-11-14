@@ -37,12 +37,12 @@ const ProfileSettings = () => {
   return (
     <div>
       <div className="mb-3">
-        <h1 className="text-2xl">Profile</h1>
+        <h1 className="text-lg">Profile</h1>
         <p className="text-muted-foreground">Manage your profile</p>
       </div>
       <Separator />
       <div className="mb-3 mt-8">
-        <p className="text-xl mb-3">UserName</p>
+        <p className="text-lg mb-3">UserName</p>
         <Input
           className="rounded"
           onChange={(e) => {
@@ -53,7 +53,7 @@ const ProfileSettings = () => {
           This is the name that everyone can see. Show Them your best NickName!
         </p>
       </div>
-      <Button className="my-6 rounded-lg" variant="ghost" onClick={updateUser}>
+      <Button className="my-6 rounded-lg" onClick={updateUser}>
         Change
       </Button>
     </div>

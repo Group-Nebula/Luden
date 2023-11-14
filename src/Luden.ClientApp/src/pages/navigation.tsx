@@ -3,7 +3,7 @@ import { ElementRef, useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import LudenImagotype from '@/components/luden-logo'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useEventCallback, useMediaQuery } from 'usehooks-ts'
 import ProtectedRoute from '../components/protected-route'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
@@ -109,25 +109,25 @@ export const Navigation = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          'group/sidebar h-[100vh] bg-muted overflow-y-auto relative flex w-60 flex-col z-[99999]',
+          'group/sidebar h-[100vh] bg-card overflow-y-auto relative flex w-60 flex-col z-[99999]',
           isResetting && 'transition-all ease-in-out duration-300',
           isMobile && 'w-0',
         )}
       >
         <div className="h-[10vh]">
-          <Link
+          <NavLink
             to="/app/home"
             className="h-full inline-flex items-center space-x-1"
           >
             <LudenImagotype />
             <Label className="text-lg"> Luden </Label>
-          </Link>
+          </NavLink>
           <Button
             onClick={collapse}
             size="icon"
             variant="link"
             className={cn(
-              'h-6 w-6 text-muted-foreground rounded-sm hover:bg-background absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
+              'h-6 w-6 text-muted-foreground rounded-sm hover:bg-background absolute top-5 right-2 opacity-0 group-hover/sidebar:opacity-100 transition',
               isMobile && 'opacity-100',
             )}
           >
@@ -139,24 +139,42 @@ export const Navigation = () => {
             className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0"
           />
         </div>
+        <Separator />
 
-        <div>
-          <Link to="">
-            <Button className="w-full rounded-lg justify-start" variant="ghost">
+        <NavLink to="characters">
+          {({ isActive }) => (
+            <Button
+              className={cn(
+                'w-full justify-start rounded-none',
+                isActive && 'bg-primary-foreground',
+              )}
+              variant="ghost"
+            >
               Characters
             </Button>
-          </Link>
-          <Link to="">
-            <Button className="w-full rounded-lg justify-start" variant="ghost">
+          )}
+        </NavLink>
+        <Separator />
+
+        <NavLink to="systems">
+          {({ isActive }) => (
+            <Button
+              className={cn(
+                'w-full justify-start rounded-none',
+                isActive && 'bg-primary-foreground',
+              )}
+              variant="ghost"
+            >
               Systems
             </Button>
-          </Link>
-        </div>
+          )}
+        </NavLink>
+        <Separator />
 
-        <Button variant="link" className="absolute bottom-3 left-2">
+        <Button variant="ghost" className="absolute bottom-0 m-3">
           <Link
             to="/settings"
-            className="inline-flex space-x-1 items-center h-full w-full"
+            className="inline-flex space-x-1 items-center h-full w-half"
           >
             <Settings className="rounded-sm" />
             <Label className="text-md cursor-pointer">Settings</Label>

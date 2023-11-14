@@ -1,22 +1,23 @@
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import ProtectedRoute from '@/components/protected-route'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
 import { useMediaQuery } from 'usehooks-ts'
 import { ChevronLeft } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 const Settings = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   return (
     <ProtectedRoute>
       <Link to="/app/home">
-        <Button size="icon" variant="outline" className="absolute top-5 left-5">
+        <Button size="icon" variant="outline" className="m-3">
           <ChevronLeft />
         </Button>
       </Link>
       <div className="bg-background justify-center text-foreground lg:container h-[100vh] flex col max-w-none grid-cols-2 lg:px-0">
-        <div className="flex w-[90%] mt-10 lg:p-10 rounded-lg flex-col">
+        <div className="flex w-[90%] lg:p-10 rounded-lg flex-col">
           <div className="mb-3">
             <h1 className="text-2xl">Settings</h1>
             <p className="text-muted-foreground">
@@ -28,7 +29,7 @@ const Settings = () => {
             <Tabs defaultValue="account" className="w-full">
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="account">
-                  <Link to="/settings/profile">
+                  <Link to="profile">
                     <Button
                       className="w-full rounded-lg justify-center"
                       variant="ghost"
@@ -38,7 +39,7 @@ const Settings = () => {
                   </Link>
                 </TabsTrigger>
                 <TabsTrigger value="password">
-                  <Link to="/settings/appearence">
+                  <Link to="appearence">
                     <Button
                       className="w-full rounded-lg justify-center"
                       variant="ghost"
@@ -49,32 +50,46 @@ const Settings = () => {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="account">
-                <Outlet />
+                <div className="p-3">
+                  <Outlet />
+                </div>
               </TabsContent>
               <TabsContent value="password">
-                <Outlet />
+                <div className="p-3">
+                  <Outlet />
+                </div>
               </TabsContent>
             </Tabs>
           )}
           {!isMobile && (
             <div className="grid-cols-12 mt-10 grid max-[780px]:hidden">
               <div className="col-span-3 lg:p-5">
-                <Link to="/settings/profile">
-                  <Button
-                    className="w-full rounded-lg justify-start"
-                    variant="ghost"
-                  >
-                    Profile
-                  </Button>
-                </Link>
-                <Link to="/settings/appearence">
-                  <Button
-                    className="w-full rounded-lg justify-start"
-                    variant="ghost"
-                  >
-                    Appearance
-                  </Button>
-                </Link>
+                <NavLink to="profile">
+                  {({ isActive }) => (
+                    <Button
+                      className={cn(
+                        'w-full rounded-lg justify-start',
+                        isActive && 'bg-primary-foreground',
+                      )}
+                      variant="ghost"
+                    >
+                      Profile
+                    </Button>
+                  )}
+                </NavLink>
+                <NavLink to="appearence">
+                  {({ isActive }) => (
+                    <Button
+                      className={cn(
+                        'w-full rounded-lg justify-start',
+                        isActive && 'bg-primary-foreground',
+                      )}
+                      variant="ghost"
+                    >
+                      Appearance
+                    </Button>
+                  )}
+                </NavLink>
               </div>
               <div className="col-span-9 p-5">
                 <Outlet />

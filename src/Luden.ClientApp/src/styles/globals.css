@@ -5,9 +5,9 @@
 
 @layer base {
   :root {
-    --background: 0 0% 92%;
+    --background: 0 0% 90%;
     --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
+    --card: 0 0% 90%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
@@ -22,7 +22,7 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 70%;
-    --input: 240 5.9% 90%;
+    --input: 240 5.9% 70%;
     --ring: 240 5.9% 10%;
     --radius: 0.3rem;
   }
@@ -30,7 +30,7 @@
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 240 10% 6%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;

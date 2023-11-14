@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import LandingPage from './pages/landing-page'
 import SignUp from './pages/SignUp'
 import SignIn from './pages/SignIn'
@@ -20,10 +20,12 @@ const App = () => {
           <Route path="*" element={<ErrorPage />} />
           <Route path="app" element={<Navigation />}>
             <Route path="home" element={<Home />} />
+            <Route path="characters" element={<h1>Characters</h1>} />
+            <Route path="systems" element={<h1>Systems</h1>} />
           </Route>
           <Route path="settings" element={<Settings />}>
-            <Route index element={<ProfileSettings />}></Route>
-            <Route path="profile" element={<ProfileSettings />}></Route>
+            <Route index element={<Navigate to="profile" replace />} />
+            <Route index path="profile" element={<ProfileSettings />}></Route>
             <Route path="appearence" element={<AppearenceSettings />}></Route>
           </Route>
         </Route>

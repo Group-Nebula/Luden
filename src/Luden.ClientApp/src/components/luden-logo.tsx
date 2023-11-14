@@ -1,10 +1,14 @@
-import { HTMLAttributes, useState } from 'react'
+import { useEffect } from 'react'
 
-const isDarkMode = localStorage.getItem('vite-ui-theme') === 'dark'
+let isDarkMode: boolean
 
 type LudenImagotypeProps = React.SVGProps<SVGSVGElement>
 
 const LudenImagotype = (props: LudenImagotypeProps) => {
+  useEffect(() => {
+    isDarkMode = localStorage.getItem('vite-ui-theme') === 'dark'
+  }, [])
+
   const LudenDarkImagotype = (props: LudenImagotypeProps) => {
     return (
       <svg
