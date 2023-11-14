@@ -84,7 +84,7 @@ const Home = () => {
       {!(characters.length > 0) && !(rpgs.length > 0) && (
         <div className="flex flex-col items-center justify-center place-items-center">
           <NoDataAnimation className="md:w-[30vw] lg:w-[50vh]" />
-          <p className="text-lg text-foreground text-center">
+          <p className="text-sm text-foreground text-center">
             You have no characters or rooms yet.
             <br /> <b>Start adding some!</b>
           </p>

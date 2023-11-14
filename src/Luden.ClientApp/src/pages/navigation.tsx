@@ -1,4 +1,4 @@
-import { ChevronsLeft, MenuIcon } from 'lucide-react'
+import { ChevronsLeft, MenuIcon, Settings } from 'lucide-react'
 import { ElementRef, useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -7,6 +7,8 @@ import { Link, Outlet } from 'react-router-dom'
 import { useEventCallback, useMediaQuery } from 'usehooks-ts'
 import ProtectedRoute from '../components/protected-route'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
+import { Label } from '@/components/ui/label'
+import { Separator } from '@/components/ui/separator'
 
 export const Navigation = () => {
   const isResizingRef = useRef(false)
@@ -112,9 +114,13 @@ export const Navigation = () => {
           isMobile && 'w-0',
         )}
       >
-        <div className="h-[7vh]">
-          <Link to="/app/home">
-            <LudenImagotype className="h-full w-half my-2" />
+        <div className="h-[10vh]">
+          <Link
+            to="/app/home"
+            className="h-full inline-flex items-center space-x-1"
+          >
+            <LudenImagotype />
+            <Label className="text-lg"> Luden </Label>
           </Link>
           <Button
             onClick={collapse}
@@ -125,7 +131,7 @@ export const Navigation = () => {
               isMobile && 'opacity-100',
             )}
           >
-            <ChevronsLeft className="h-6 w-6" />
+            <ChevronsLeft />
           </Button>
           <div
             onMouseDown={handleMouseDown}
@@ -133,6 +139,29 @@ export const Navigation = () => {
             className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0"
           />
         </div>
+
+        <div>
+          <Link to="">
+            <Button className="w-full rounded-lg justify-start" variant="ghost">
+              Characters
+            </Button>
+          </Link>
+          <Link to="">
+            <Button className="w-full rounded-lg justify-start" variant="ghost">
+              Systems
+            </Button>
+          </Link>
+        </div>
+
+        <Button variant="link" className="absolute bottom-3 left-2">
+          <Link
+            to="/settings"
+            className="inline-flex space-x-1 items-center h-full w-full"
+          >
+            <Settings className="rounded-sm" />
+            <Label className="text-md cursor-pointer">Settings</Label>
+          </Link>
+        </Button>
       </aside>
       <div
         ref={navbarRef}

@@ -4,11 +4,17 @@ import { Link, Outlet } from 'react-router-dom'
 import ProtectedRoute from '@/components/protected-route'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs'
 import { useMediaQuery } from 'usehooks-ts'
+import { ChevronLeft } from 'lucide-react'
 
 const Settings = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   return (
     <ProtectedRoute>
+      <Link to="/app/home">
+        <Button size="icon" variant="outline" className="absolute top-5 left-5">
+          <ChevronLeft />
+        </Button>
+      </Link>
       <div className="bg-background justify-center text-foreground lg:container h-[100vh] flex col max-w-none grid-cols-2 lg:px-0">
         <div className="flex w-[90%] mt-10 lg:p-10 rounded-lg flex-col">
           <div className="mb-3">
