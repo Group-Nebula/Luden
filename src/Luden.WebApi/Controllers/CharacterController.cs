@@ -16,7 +16,7 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllCharactersRes>> GetAllActive([FromQuery] string characterName)
+        public async Task<ActionResult<GetAllCharactersRes>> GetAllActive([FromQuery] string? characterName)
         {
             try
             {

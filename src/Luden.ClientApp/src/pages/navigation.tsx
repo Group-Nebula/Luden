@@ -6,9 +6,9 @@ import LudenImagotype from '@/components/luden-logo'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useEventCallback, useMediaQuery } from 'usehooks-ts'
 import ProtectedRoute from '../components/protected-route'
-import { ScrollArea } from '@radix-ui/react-scroll-area'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 export const Navigation = () => {
   const isResizingRef = useRef(false)
@@ -54,15 +54,15 @@ export const Navigation = () => {
 
   const Page = () => {
     return (
-      <ScrollArea>
+      <ScrollArea className="h-[92vh] flex flex-wrap">
         <div
-          className="bg-background h-[90vh] mx-[2vw] my-[2vh]"
+          className="bg-background mx-[2vw] my-[2vh]"
           style={
             isCollapsed
-              ? { width: 'calc(98vw)' }
-              : isResizingRef
-              ? { width: `calc(98vw - ${newWidth})` }
-              : { width: 'calc(98vw - 240px)' }
+              ? { width: '98vw' }
+              : sidebarRef.current !== null
+              ? { width: `calc(98vw - ${sidebarRef.current.style.width})` }
+              : { width: `98vw` }
           }
         >
           <Outlet />
@@ -156,7 +156,7 @@ export const Navigation = () => {
         </NavLink>
         <Separator />
 
-        <NavLink to="systems">
+        <NavLink to="rpg-systems">
           {({ isActive }) => (
             <Button
               className={cn(
@@ -165,7 +165,7 @@ export const Navigation = () => {
               )}
               variant="ghost"
             >
-              Systems
+              RPG Systems
             </Button>
           )}
         </NavLink>

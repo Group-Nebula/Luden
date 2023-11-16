@@ -1,5 +1,5 @@
 import { Endpoints } from '@/api/Endpoints'
-import HorizontalList from '@/components/horizontal-list'
+import { HorizontalList } from '@/components/list'
 import { NoDataAnimation } from '@/components/lottie-animations'
 import { Button } from '@/components/ui/button'
 import { DropdownMenuSeparator } from '@/components/ui/dropdown-menu'
@@ -13,10 +13,10 @@ const Home = () => {
   const { toast } = useToast()
 
   interface ListItem {
-    id: number
+    id: string
     name: string
     description: string
-    image: string
+    imageUrl: string
   }
 
   const [characters, setCharacters] = useState<ListItem[]>([])
@@ -60,12 +60,14 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="h-full w-full justify-center">
+    <div className="w-full justify-center">
       {characters.length > 0 && (
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Characters</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            Your Characters
+          </h2>
           <p className="text-sm text-muted-foreground">
-            The most recent Characters.
+            All of your Characters.
           </p>
           <DropdownMenuSeparator />
           <HorizontalList items={characters} />
