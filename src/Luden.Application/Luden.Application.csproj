@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Requests\Character\" />
     <Folder Include="Models\Requests\Rpg\" />
   </ItemGroup>
 
