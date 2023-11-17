@@ -20,9 +20,5 @@ namespace Luden.Domain.Specifications
             return new BaseSpecification<Character>(x => x.UserId.Equals(userId) && !x.IsDeleted);
         }
 
-        public static ISpecification<Character> GetById(object characterId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

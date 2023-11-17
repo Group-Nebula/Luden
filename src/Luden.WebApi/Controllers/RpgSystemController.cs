@@ -1,27 +1,28 @@
 ﻿using Luden.Application.Interfaces;
-using Luden.Application.Models.Requests.Rpg;
-using Luden.Application.Models.Responses.Rpg;
+using Luden.Application.Models.Requests.RpgSystem;
+using Luden.Application.Models.Responses;
+using Luden.Application.Models.Responses.RpgSystem;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Luden.WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class RpgController : ControllerBase
+    public class RpgSystemController : ControllerBase
     {
-        private readonly IRpgService _rpgService;
+        private readonly IRpgSystemService _rpgSystemService;
 
-        public RpgController(IRpgService rpgService)
+        public RpgSystemController(IRpgSystemService rpgSystemService)
         {
-            _rpgService = rpgService;
+            _rpgSystemService = rpgSystemService;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CreateRpgReq request)
+        public async Task<ActionResult> Create([FromBody] CreateRpgSystemReq request)
         {
             try
             {
-                await _rpgService.Create(request);
+                await _rpgSystemService.Create(request);
                 return Ok();
             }
             catch (Exception)
@@ -37,11 +38,11 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromBody] UpdateRpgReq request)
+        public async Task<ActionResult> Update([FromBody] UpdateRpgSystemReq request)
         {
             try
             {
-                await _rpgService.Update(request);
+                await _rpgSystemService.Update(request);
                 return Ok();
             }
             catch (Exception)
@@ -55,13 +56,14 @@ namespace Luden.WebApi.Controllers
                 });
             }
         }
+
 
         [HttpDelete]
-        public async Task<ActionResult> Delete([FromQuery] Guid rpgId)
+        public async Task<ActionResult> Delete([FromQuery] Guid rpgSystemId)
         {
             try
             {
-                await _rpgService.Delete(rpgId);
+                await _rpgSystemService.Delete(rpgSystemId);
                 return Ok();
             }
             catch (Exception)
@@ -77,11 +79,11 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllRpgsRes>> GetAll([FromQuery] string? rpgName)
+        public async Task<ActionResult<GetRpgSystemByIdRes>> GetById([FromQuery] Guid rpgSystemId)
         {
             try
             {
-                var result = await _rpgService.GetAllActive(rpgName);
+                var result = await _rpgSystemService.GetById(rpgSystemId);
                 return Ok(result);
             }
             catch (Exception)
@@ -97,11 +99,11 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllRpgsRes>> GetAllByUserId([FromQuery] Guid userId)
+        public async Task<ActionResult<IEnumerable<NameIdRes>>> GetAllNameId([FromQuery] string rpgSystemName)
         {
             try
             {
-                var result = await _rpgService.GetAllActiveByUserId(userId);
+                var result = await _rpgSystemService.GetAllNameId(rpgSystemName);
                 return Ok(result);
             }
             catch (Exception)
@@ -116,5 +118,24 @@ namespace Luden.WebApi.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<GetAllRpgSystemRes>>> GetAll([FromQuery] string rpgSystemName)
+        {
+            try
+            {
+                var result = await _rpgSystemService.GetAll(rpgSystemName);
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return new ObjectResult(new ProblemDetails
+                {
+                    Status = StatusCodes.Status500InternalServerError,
+                    Title = "Ops! Something went wrong",
+                    Detail = "Try again later",
+                    Instance = HttpContext.Request.Path
+                });
+            }
+        }
     }
 }
