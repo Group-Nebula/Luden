@@ -27,6 +27,7 @@ namespace Luden.Application.Services
             {
                 Name = request.Name,
                 Description = request.Description,
+                ImageUrl = request.ImageUrl,
                 Config = request.Config.ToJson(),
             };
 

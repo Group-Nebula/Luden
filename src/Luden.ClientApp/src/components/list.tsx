@@ -1,7 +1,5 @@
 import { cn } from '@/lib/utils'
 import { ScrollArea, ScrollBar } from './ui/scroll-area'
-import { useMediaQuery } from 'usehooks-ts'
-import { Separator } from './ui/separator'
 
 interface ListItem {
   id: string

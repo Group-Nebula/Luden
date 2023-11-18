@@ -7,6 +7,7 @@ import { toast } from '@/components/ui/use-toast'
 import axios from 'axios'
 import { Search, PlusCircle } from 'lucide-react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
 
 const SystemsHome = () => {
@@ -16,9 +17,9 @@ const SystemsHome = () => {
 
   const GetSystems = () => {
     axios
-      .get(Endpoints.GetAllCharacters + `?characterName=${systemsName}`)
+      .get(Endpoints.GetAllRpgSystems + `?rpgSystemName=${systemsName}`)
       .then((response) => {
-        setSystems(response.data.data)
+        setSystems(response.data?.data ?? [])
       })
       .catch((error) => {
         toast({
@@ -51,12 +52,18 @@ const SystemsHome = () => {
             }}
           />
         </div>
-        <Button className="mx-3 w-[15%] p-0">
-          <PlusCircle />
-          {!isMobile && <p className="text-sm ms-1">Add</p>}
-        </Button>
+        <Link to="create" className="mx-3 w-[15%]">
+          <Button className="p-0 w-full">
+            <PlusCircle />
+            {!isMobile && <p className="text-sm ms-1">Add</p>}
+          </Button>
+        </Link>
       </div>
-      <GridList items={systems} />
+      {systems.length > 0 ? (
+        <GridList items={systems} />
+      ) : (
+        <p className="text-md text mt-1">No systems found</p>
+      )}
     </>
   )
 }
