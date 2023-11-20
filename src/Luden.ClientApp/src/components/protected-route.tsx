@@ -4,7 +4,6 @@ import { ReactNode } from 'react'
 interface ProtectedRouteProps {
   children: ReactNode
 }
-
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   if (
     localStorage.getItem('token') === null ||
@@ -17,4 +16,17 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   }
 }
 
+const IsAuthenticated = () => {
+  if (
+    localStorage.getItem('token') === null ||
+    localStorage.getItem('token') === 'undefined' ||
+    localStorage.getItem('token') === undefined
+  ) {
+    return false
+  } else {
+    return true
+  }
+}
+
 export default ProtectedRoute
+export { IsAuthenticated }

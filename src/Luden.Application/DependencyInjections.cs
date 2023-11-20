@@ -12,6 +12,10 @@ namespace Luden.Application
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ICharacterService, CharacterService>();
             services.AddScoped<IRpgService, RpgService>();
+            services.AddScoped<ISkillService, SkillService>();
+            services.AddScoped<IRpgSystemService, RpgSystemService>();
+            services.AddScoped<ICharacterSkillService, CharacterSkillService>();
+            services.AddScoped<ISkillService, SkillService>();
         }
     }
 }

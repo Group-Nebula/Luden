@@ -20,6 +20,7 @@ namespace Luden.Infrastructure.Data.Mappings
             //Properties
             builder.Property(rs => rs.Name).HasColumnType("varchar(150)").IsRequired();
             builder.Property(rs => rs.Description).HasColumnType("varchar(max)").IsRequired();
+            builder.Property(rs => rs.ImageUrl).HasColumnType("varchar(max)").IsRequired();
             builder.Property(rs => rs.Config).HasColumnType("varchar(max)").IsRequired();
 
             //Relationships

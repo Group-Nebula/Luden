@@ -90,7 +90,7 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllActiveUsersRes>> GetAll([FromQuery] string username)
+        public async Task<ActionResult<GetAllActiveUsersRes>> GetAll([FromQuery] string? username)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace Luden.WebApi.Controllers
         public async Task<ActionResult> Update(UpdateUserReq req)
         {
             try
-            { 
+            {
                 await _userService.UpdateUser(req);
                 return Ok();
             }

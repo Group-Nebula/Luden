@@ -1,9 +1,10 @@
 import { Endpoints } from '@/api/Endpoints'
+import { IsAuthenticated } from '@/components/protected-route'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
@@ -12,6 +13,10 @@ const SignUp = () => {
   const [email, setEmail] = useState('')
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    if (IsAuthenticated()) navigate('/app/home')
+  }, [])
 
   function createUser() {
     axios
@@ -28,7 +33,7 @@ const SignUp = () => {
           variant: 'default',
         })
 
-        navigate('/app/home')
+        navigate('/app/sign-in')
       })
       .catch((error) => {
         toast({

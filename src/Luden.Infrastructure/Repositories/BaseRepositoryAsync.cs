@@ -46,9 +46,27 @@ namespace Luden.Infrastructure.Repositories
             return entity;
         }
 
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+        {
+            foreach (T entity in entities)
+            {
+                await _dbContext.Set<T>().AddAsync(entity);
+            }
+        }
+
         public void Update(T entity)
         {
             _dbContext.Set<T>().Update(entity);
+            _dbContext.SaveChanges();
+        }
+
+        public void UpdateRange(IEnumerable<T> entities)
+        {
+            foreach (T entity in entities)
+            {
+                _dbContext.Set<T>().Update(entity);
+            }
+
             _dbContext.SaveChanges();
         }
 
@@ -60,6 +78,14 @@ namespace Luden.Infrastructure.Repositories
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
+        }
+
+        public void DeleteRange(IEnumerable<T> entities)
+        {
+            foreach (T entity in entities)
+            {
+                _dbContext.Set<T>().Remove(entity);
+            }
         }
     }
 }

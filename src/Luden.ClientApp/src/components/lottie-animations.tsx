@@ -1,14 +1,33 @@
-import { Player, Controls } from '@lottiefiles/react-lottie-player'
 import NoData from '@/assets/animations/no-data.json'
+import ErroPage from '@/assets/animations/error-page.json'
+import Lottie from 'lottie-react'
 
-const NoDataAnimation = (props: React.HTMLAttributes<HTMLDivElement>) => {
+const ErrorPageAnimation = (props: React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <div {...props}>
-      <Player autoplay={true} src={NoData} loop={false} keepLastFrame={true}>
-        <Controls visible={false} />
-      </Player>
-    </div>
+    <Lottie
+      {...props}
+      autoplay={true}
+      animationData={ErroPage}
+      loop={false}
+      onComplete={() => {
+        stop()
+      }}
+    />
   )
 }
 
-export { NoDataAnimation }
+const NoDataAnimation = (props: React.HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <Lottie
+      {...props}
+      autoplay={true}
+      animationData={NoData}
+      loop={false}
+      onComplete={() => {
+        stop()
+      }}
+    />
+  )
+}
+
+export { ErrorPageAnimation, NoDataAnimation }

@@ -15,9 +15,9 @@ namespace Luden.Domain.Specifications
             return new BaseSpecification<User>(x => x.Email == email || x.Username == username);
         }
 
-        public static BaseSpecification<User> GetAllActiveUsersSpec(string username)
+        public static BaseSpecification<User> GetAllActiveUsersSpec(string? username)
         {
-            return new BaseSpecification<User>(x => x.Username.Contains(username) && !x.IsDeleted);
+            return new BaseSpecification<User>(x => (x.Username.Contains(username) || string.IsNullOrEmpty(x.Username)) && !x.IsDeleted);
         }
         public static BaseSpecification<User> GetUserById(Guid id)
         {

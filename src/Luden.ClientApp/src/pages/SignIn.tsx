@@ -4,13 +4,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Endpoints } from '../api/Endpoints.ts'
 import { useToast } from '@/components/ui/use-toast.ts'
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { IsAuthenticated } from '@/components/protected-route.tsx'
 
 const SignIn = () => {
   const { toast } = useToast()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    if (IsAuthenticated()) navigate('/app/home')
+  }, [])
 
   function validateUser() {
     axios
