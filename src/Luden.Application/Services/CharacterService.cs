@@ -31,10 +31,11 @@ namespace Luden.Application.Services
                 BirthDate = request.BirthDate,
                 Description = request.Description,
                 ImageUrl = request.ImageUrl,
-                Status = Domain.Enums.CharacterStatus.Normal
+                Status = request.Status,
             };
 
             character = await _unitOfWork.Repository<Character>().AddAsync(character);
+            await _unitOfWork.SaveChangesAsync();
 
             var characterSkills = request.Skills.Select(x => new CharacterSkill
             {

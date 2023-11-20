@@ -11,7 +11,7 @@ namespace Luden.Application.Interfaces
         Task Update(UpdateRpgSystemReq request);
         Task Create(CreateRpgSystemReq request);
         Task<RpgSystemDTO> GetById(Guid rpgSystemId);
-        Task<IEnumerable<NameIdRes>> GetAllNameId(string rpgSystemName);
-        Task<IEnumerable<GetAllRpgSystemRes>> GetAll(string rpgSystemName);
+        Task<IEnumerable<NameIdRes>> GetAllNameId(string? rpgSystemName);
+        Task<IEnumerable<GetAllRpgSystemRes>> GetAll(string? rpgSystemName);
     }
 }

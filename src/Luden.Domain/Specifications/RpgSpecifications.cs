@@ -5,9 +5,9 @@ namespace Luden.Domain.Specifications
 {
     public class RpgSpecifications
     {
-        public static BaseSpecification<Rpg> GetAllActiveRpgsSpec(string rpgName)
+        public static BaseSpecification<Rpg> GetAllActiveRpgsSpec(string? rpgName)
         {
-            return new BaseSpecification<Rpg>(x => x.Name.Contains(rpgName) && !x.IsDeleted);
+            return new BaseSpecification<Rpg>(x => (x.Name.Contains(rpgName) || string.IsNullOrEmpty(rpgName)) && !x.IsDeleted);
         }
 
         public static BaseSpecification<Rpg> GetAllActiveByUserIdRpgsSpec(Guid userId)

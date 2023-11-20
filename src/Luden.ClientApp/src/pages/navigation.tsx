@@ -10,6 +10,8 @@ import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
+export let IsCollapsed = false
+
 export const Navigation = () => {
   const isResizingRef = useRef(false)
   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -74,6 +76,7 @@ export const Navigation = () => {
   const resetWidth = () => {
     if (sidebarRef.current && navbarRef.current) {
       setIsCollapsed(false)
+      IsCollapsed = false
       setIsResetting(true)
 
       sidebarRef.current.style.width = isMobile ? '100%' : '240px'
@@ -95,6 +98,7 @@ export const Navigation = () => {
   const collapse = useEventCallback(() => {
     if (sidebarRef.current && navbarRef.current) {
       setIsCollapsed(true)
+      IsCollapsed = true
       setIsResetting(true)
 
       sidebarRef.current.style.width = '0'
@@ -109,7 +113,7 @@ export const Navigation = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          'group/sidebar h-[100vh] bg-card overflow-y-auto relative flex w-60 flex-col z-[99999] border-input border-r-[1px]',
+          'group/sidebar h-[100vh] bg-card overflow-y-auto relative flex w-60 flex-col z-[99999999] border-input border-r-[1px]',
           isResetting && 'transition-all ease-in-out duration-300',
           isMobile && 'w-0',
         )}
@@ -151,6 +155,21 @@ export const Navigation = () => {
               variant="ghost"
             >
               Characters
+            </Button>
+          )}
+        </NavLink>
+        <Separator />
+
+        <NavLink to="rpg">
+          {({ isActive }) => (
+            <Button
+              className={cn(
+                'w-full justify-start rounded-none',
+                isActive && 'bg-primary-foreground',
+              )}
+              variant="ghost"
+            >
+              RPGs
             </Button>
           )}
         </NavLink>

@@ -10,20 +10,20 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
 
-const SystemsHome = () => {
+const RpgsHome = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
-  const [systemsName, setSystemsName] = useState('')
-  const [systems, setSystems] = useState([])
+  const [rpgsName, setRpgsName] = useState('')
+  const [rpgs, setRpgs] = useState([])
 
   useEffect(() => {
-    GetSystems()
+    GetRpgs()
   }, [])
 
-  const GetSystems = () => {
+  const GetRpgs = () => {
     axios
-      .get(Endpoints.GetAllRpgSystems + `?rpgSystemName=${systemsName}`)
+      .get(Endpoints.GetAllRpgs + `?rpgName=${rpgsName}`)
       .then((response) => {
-        setSystems(response.data)
+        setRpgs(response.data?.data ?? [])
       })
       .catch((error) => {
         toast({
@@ -36,8 +36,8 @@ const SystemsHome = () => {
   return (
     <>
       <div>
-        <h1 className="text-2xl">RPG Systems</h1>
-        <p className="text-muted-foreground">Find or add a new RPG system</p>
+        <h1 className="text-2xl">Rpgs</h1>
+        <p className="text-muted-foreground">Find or add a new Rpg</p>
       </div>
       <Separator className="my-3" />
       <div className="flex col items-center justify-center h-full w-full">
@@ -45,14 +45,14 @@ const SystemsHome = () => {
           <Button
             variant="link"
             className="absolute inset-y-0 right-0 flex items-center pr-3"
-            onClick={GetSystems}
+            onClick={GetRpgs}
           >
             <Search className="text-input" />
           </Button>
           <Input
-            placeholder="Search for a system"
+            placeholder="Search for a rpg"
             onChange={(e) => {
-              setSystemsName(e.target.value)
+              setRpgsName(e.target.value)
             }}
           />
         </div>
@@ -63,13 +63,13 @@ const SystemsHome = () => {
           </Button>
         </Link>
       </div>
-      {systems.length > 0 ? (
-        <GridList items={systems} />
+      {rpgs.length > 0 ? (
+        <GridList items={rpgs} />
       ) : (
-        <p className="text-md text mt-1">No systems found</p>
+        <p className="text-md text mt-1">No rpgs found</p>
       )}
     </>
   )
 }
 
-export default SystemsHome
+export default RpgsHome

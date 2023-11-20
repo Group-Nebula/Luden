@@ -10,7 +10,6 @@ namespace Luden.Application.Models.Requests.Character
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public CharacterStatus Status { get; set; }
-
         public IEnumerable<KeyValuePair<Guid, int>> Skills { get; set; }
     }
 }

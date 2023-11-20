@@ -29,13 +29,6 @@ export const nameValueCol = [
     IsEditable: true,
     IsActions: false,
   },
-
-  {
-    key: 'delete',
-    header: 'Actions',
-    IsEditable: false,
-    IsActions: true,
-  },
 ]
 
 export interface SkillTableProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -70,6 +63,13 @@ const SkillTable = (props: SkillTableProps) => {
                 </tr>
               </thead>
               <tbody className="p-1.5">
+                {props.data.length < 1 && (
+                  <tr className="py-10 border-t border-input h-10">
+                    <td className="text-end text-sm whitespace-nowrap">
+                      No skills added yet...
+                    </td>
+                  </tr>
+                )}
                 {props.data.map((row) => (
                   <tr
                     key={row.id}

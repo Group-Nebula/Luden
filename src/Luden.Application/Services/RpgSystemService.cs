@@ -32,6 +32,7 @@ namespace Luden.Application.Services
             };
 
             rpgSystem = await _unitOfWork.Repository<RpgSystem>().AddAsync(rpgSystem);
+            await _unitOfWork.SaveChangesAsync();
 
             var skills = request.Skills.Select(s => new SkillsDTO
             {
@@ -50,7 +51,7 @@ namespace Luden.Application.Services
             _unitOfWork.Repository<RpgSystem>().Update(rpgSystem);
         }
 
-        public async Task<IEnumerable<GetAllRpgSystemRes>> GetAll(string rpgSystemName)
+        public async Task<IEnumerable<GetAllRpgSystemRes>> GetAll(string? rpgSystemName)
         {
             var rpgSytemSpec = RpgSystemSpecifications.GetAllActiveRpgSystemsSpec(rpgSystemName);
             var rpgSystems = await _unitOfWork.Repository<RpgSystem>().ListAsync(rpgSytemSpec);
@@ -59,16 +60,17 @@ namespace Luden.Application.Services
             {
                 Id = x.Id,
                 Name = x.Name,
+                ImageUrl = x.ImageUrl,
                 Description = x.Description,
             });
         }
 
-        public async Task<IEnumerable<NameIdRes>> GetAllNameId(string rpgSystemName)
+        public async Task<IEnumerable<NameIdRes>> GetAllNameId(string? rpgSystemName)
         {
             var rpgSytemSpec = RpgSystemSpecifications.GetAllActiveRpgSystemsSpec(rpgSystemName);
             var rpgSystems = await _unitOfWork.Repository<RpgSystem>().ListAsync(rpgSytemSpec);
 
-            return rpgSystems.Select(x => new NameIdRes(x.Id, x.Name));
+            return rpgSystems.Select(x => new NameIdRes(x.Id, x.Name)).Take(10);
         }
 
         public async Task<RpgSystemDTO> GetById(Guid rpgSystemId)

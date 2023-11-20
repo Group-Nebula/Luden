@@ -7,7 +7,7 @@ namespace Luden.Domain.Specifications
     {
         public static BaseSpecification<Character> GetAllActiveCharactersSpec(string? characterName)
         {
-            return new BaseSpecification<Character>(x => (string.IsNullOrEmpty(characterName) || x.Name.Contains(characterName.Trim())) && !x.IsDeleted);
+            return new BaseSpecification<Character>(x => (string.IsNullOrEmpty(characterName) || x.Name.Contains(characterName)) && !x.IsDeleted);
         }
 
         public static BaseSpecification<Character> GetById(Guid CharacterId)

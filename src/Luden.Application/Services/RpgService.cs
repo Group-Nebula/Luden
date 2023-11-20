@@ -31,6 +31,7 @@ namespace Luden.Application.Services
             };
 
             rpg = await _unitOfWork.Repository<Rpg>().AddAsync(rpg);
+            await _unitOfWork.SaveChangesAsync();
 
             foreach (var playerId in request.RpgPlayers)
             {
@@ -80,7 +81,7 @@ namespace Luden.Application.Services
             _unitOfWork.Repository<Rpg>().Update(rpg);
         }
 
-        public async Task<GetAllRpgsRes> GetAllActive(string rpgName)
+        public async Task<GetAllRpgsRes> GetAllActive(string? rpgName)
         {
             var activeRpgsSpec = RpgSpecifications.GetAllActiveRpgsSpec(rpgName);
 

@@ -33,7 +33,7 @@ const SignUp = () => {
           variant: 'default',
         })
 
-        navigate('/app/home')
+        navigate('/app/sign-in')
       })
       .catch((error) => {
         toast({

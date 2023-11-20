@@ -12,6 +12,8 @@ import SystemsHome from './pages/systems/systemsHome'
 import CreateSystem from './pages/systems/createSystems'
 import CharactersHome from './pages/characters/charactersHome'
 import CreateCharacter from './pages/characters/createCharacter'
+import RpgsHome from './pages/rpgs/rpgHome'
+import CreateRpg from './pages/rpgs/createRpg'
 
 const App = () => {
   return (
@@ -31,6 +33,10 @@ const App = () => {
             <Route path="rpg-systems">
               <Route index element={<SystemsHome />} />
               <Route path="create" element={<CreateSystem />} />
+            </Route>
+            <Route path="rpg">
+              <Route index element={<RpgsHome />} />
+              <Route path="create" element={<CreateRpg />} />
             </Route>
           </Route>
           <Route path="settings" element={<Settings />}>

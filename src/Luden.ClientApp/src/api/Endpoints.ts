@@ -30,4 +30,7 @@ export enum Endpoints {
   ValidateUser = BaseUrl + '/api/User/Validate',
   GetAllUsers = BaseUrl + '/api/User/GetAll',
   UpdateUser = BaseUrl + '/api/User/Update',
+
+  // [Skills]
+  ListAllSkills = BaseUrl + '/api/Skill/GetAllBySystemId',
 }

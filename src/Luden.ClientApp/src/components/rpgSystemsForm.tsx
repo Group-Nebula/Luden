@@ -59,7 +59,7 @@ const RpgSystemsForm = () => {
       config: {
         skillDice: 'd20',
       },
-      skills: ['Acrobatics'],
+      skills: [],
     },
     mode: 'onChange',
   })
@@ -73,12 +73,12 @@ const RpgSystemsForm = () => {
     axios
       .post(Endpoints.CreateRpgSystem, values)
       .then(() => {
+        navigate('/app/rpg-systems')
         toast({
           title: 'Sucess',
-          description: 'rpg system created!',
+          description: 'Rpg system created!',
           variant: 'default',
         })
-        navigate('/app/rpg-systems')
       })
       .catch((error) => {
         toast({
@@ -152,7 +152,7 @@ const RpgSystemsForm = () => {
                     <img
                       src={field.value}
                       alt="system image"
-                      className="aspect-[315/250] h-[210px] w-[200px] border border-input"
+                      className="aspect-square h-[200px] w-[200px] border border-input"
                     />
                   )}
                 </FormDescription>

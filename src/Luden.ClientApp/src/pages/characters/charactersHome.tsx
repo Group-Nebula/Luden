@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator'
 import { toast } from '@/components/ui/use-toast'
 import axios from 'axios'
 import { Search, PlusCircle } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
 
@@ -14,6 +14,10 @@ const CharactersHome = () => {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [charactersName, setCharactersName] = useState('')
   const [characters, setCharacters] = useState([])
+
+  useEffect(() => {
+    GetCharacters()
+  }, [])
 
   const GetCharacters = () => {
     axios

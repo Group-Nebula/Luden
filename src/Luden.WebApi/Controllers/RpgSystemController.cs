@@ -99,7 +99,7 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<NameIdRes>>> GetAllNameId([FromQuery] string rpgSystemName)
+        public async Task<ActionResult<IEnumerable<NameIdRes>>> GetAllNameId([FromQuery] string? rpgSystemName)
         {
             try
             {
@@ -119,7 +119,7 @@ namespace Luden.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GetAllRpgSystemRes>>> GetAll([FromQuery] string rpgSystemName)
+        public async Task<ActionResult<IEnumerable<GetAllRpgSystemRes>>> GetAll([FromQuery] string? rpgSystemName)
         {
             try
             {

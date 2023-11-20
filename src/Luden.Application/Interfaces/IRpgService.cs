@@ -8,7 +8,7 @@ namespace Luden.Application.Interfaces
         Task Create(CreateRpgReq request);
         Task Update(UpdateRpgReq request);
         Task Delete(Guid rpgId);
-        Task<GetAllRpgsRes> GetAllActive(string rpgName);
+        Task<GetAllRpgsRes> GetAllActive(string? rpgName);
         Task<GetAllRpgsRes> GetAllActiveByUserId(Guid userId);
     }
 }
