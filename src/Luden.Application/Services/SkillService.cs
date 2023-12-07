@@ -30,6 +30,7 @@ namespace Luden.Application.Services
             }
 
             await _unitOfWork.Repository<Skill>().AddRangeAsync(Skills);
+            await _unitOfWork.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<NameIdRes>> GetAllBySystemId(Guid rpgSystemId)
